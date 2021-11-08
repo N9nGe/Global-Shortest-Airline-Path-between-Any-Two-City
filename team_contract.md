@@ -17,3 +17,6 @@
 2. **Time Commitment**: The time commitment of each member will depend on the work distribution, and we are expecting at least 2 hours per week’s workload. With that being said, there may be extra time needed if any of us is facing difficulties not able to handle by ourselves. In this case, we will ask other team members for help, while keeping a flexible schedule to make sure we can solve the problem efficiently.
 
 3. **Conflict Resolution**: All conflict within the team will be decided by voting. If the votes supporting both decisions are equal, the organizer of each meeting will make the final decision.
+
+### **Signature**
+Yiming Zhao (yiming14)
