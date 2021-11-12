@@ -1,6 +1,4 @@
 #include <iostream>
-#include "dsets.h"
-#include "maze.h"
 #include "cs225/PNG.h"
 
 using namespace std;
