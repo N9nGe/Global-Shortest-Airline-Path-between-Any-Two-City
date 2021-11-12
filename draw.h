@@ -5,13 +5,14 @@
 #include "cs225/PNG.h"
 #include "cs225/HSLAPixel.h"
 #include "graph.h"
+#include "functions.h"
 
-class draw {
+class Draw {
     public:
 /**
  * default constructor
  */
-    draw() { };
+    Draw() { };
     private:
 
 };
