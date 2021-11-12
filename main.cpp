@@ -2,6 +2,7 @@
 #include "cs225/PNG.h"
 #include "graph.h"
 #include "draw.h"
+#include "functions.h"
 
 using namespace std;
 
