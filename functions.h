@@ -4,6 +4,10 @@
  */
 #pragma once
 #include "graph.h"
+#include <string>
+#include <vector>
+
+using namespace std;
 
 class Functions {
     public:
@@ -11,5 +15,6 @@ class Functions {
  * default constructor
  */
         Functions() { };
+        vector<vector<string>> readRoute(const string & filename);
     private:
 };

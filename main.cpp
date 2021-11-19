@@ -3,6 +3,10 @@
 #include "graph.h"
 #include "draw.h"
 #include "functions.h"
+#include <fstream>
+#include <sstream>
+#include <string>
+#include <vector>
 
 using namespace std;
 
