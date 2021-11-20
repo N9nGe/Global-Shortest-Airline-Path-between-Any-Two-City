@@ -14,7 +14,7 @@
 
 **Covered Algorithm:** Shortest path - Floyd-Warshall Algorithm or Dijkstra’s Algorithm.
 
-**Possible solutions for complex and uncovered options:** 
+**Possible solutions for complex and uncovered options:**
 
 Graphical output on projected onto a world map
 
@@ -26,4 +26,16 @@ Analyze the shorest path under different weather situations
 
 **Goals:** Download the datasets from the website, add the cs225 and catch files, organize all the files in the repository. 
 
-**Description:** Downloaded datasets using the github from OpenFlights.org. Deleted several files which are not needed in the final project and saved as the data folder in the repository. Copied the cs225 folder (contains the necessary catch files, PNG files, make files) to the repository. Created tests folder, in which test cases will be written in the future. Created MakeFile and successfully runned the main.cpp. After arguing about the structure of the classes of our final project, we decided to create three classes: Graph, Functions, and Draw. The Graph class will contain the struct of vertices and edges. It will include all the member variables and member functions about the Graph. The Functions class will contain the BFS traversal and Dijkstra's Algorithm. The Draw class will contain the graphic mapping from our graph data to the map PNG. Then the basic codes and comments of the three classes are created. 
+**Description:** Downloaded datasets using the github from OpenFlights.org. Deleted several files which are not needed in the final project and saved as the data folder in the repository. Copied the cs225 folder (contains the necessary catch files, PNG files, make files) to the repository. Created tests folder, in which test cases will be written in the future. Created MakeFile and successfully runned the main.cpp. After arguing about the structure of the classes of our final project, we decided to create three classes: Graph, Functions, and Draw. The Graph class will contain the struct of vertices and edges. It will include all the member variables and member functions about the Graph. The Functions class will contain the BFS traversal and Dijkstra's Algorithm. The Draw class will contain the graphic mapping from our graph data to the map PNG. Then the basic codes and comments of the three classes are created.
+
+## **Week 3 (2021/11/19)**
+
+**Goals:** Our main goal is to revise the proposal and implement the storage of airport and airline data.
+
+**Description:**
+
+1. Revision of proposal. We have specified that edges are weighted by distance, how the distance is calculated by the latitude and longitude of two locations, and how we are going to store the airports and airlines data.
+
+2. Storage of data. Since our airports and airlines data are in csv and .dat format, we need to transform them into String and Vector to process. Inspired by how we store cells in mp_mazes, we have two plans to implement the transformation:
+   - The first method is using several 1-dimension vectors to store different string variables, for example, std::vector airportName, std::vector city, std::vector latitude. In this case, the pro is we can have a clear category of every type of variable. The con is if there is one missing element in a vector, the following element will not be in correspondence with the order of airports or airlines.
+   - The second method is using a 2-dimension vector in the form of std::vector<std::vector<<std::string>>>. We will first store each element of an airport or airline into a 1-dimension vector, such as storing “London”, “43.035599” into std::vector londonAirport, and then push back every 1-dimension vector to the 2-dimension vector as a collection of all airports or airlines. In this case, we can make sure the order of each airport or airline is correct, and this is our final implementation.
