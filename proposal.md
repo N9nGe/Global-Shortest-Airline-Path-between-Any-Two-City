@@ -4,18 +4,36 @@
 
 **Name: Gabriel Gao(ngao4), Yiming Zhao (yiming14), Tiancheng Xiao(txiao5), Haoyu Zhai(zhai11)**
 
-## **1. Leading Question:**
+## **1. Leading Question**
 
 The ﬁnal project is going to use OpenFlights as the dataset. The goal of the ﬁnal project is to ﬁnd the shortest route between two airports and display this route on a world map. The project will be a search tool that accepts two airport IDs that represent the starting point and destination. Then, the tool will output a string that includes all airport IDs in this path and an image (PNG) that displays the route on a world map.
 
 
 ## **2. Dataset Acquisition and Processing**
 
-The dataset chosen for our final project is OpenFlights. We are going to mainly use route databases and airport databases. The databases will be downloaded as .dat from the website. The route database contains the information such as airline ID, source airport, destination airport, and stops about every single route. The airport database contains the information such as airport ID, name, city, latitude, longitude, and altitude. 
+The dataset chosen for our final project is OpenFlights. We are going to mainly use route databases and airport databases. The databases will be downloaded as .dat from the website. 
+
+An example of data format in the airport database is "Goroka Airport","Goroka","Papua New Guinea", "GKA", "AYGA", -6.08168983, 145.39199829, 5282,10, "U", "Pacific/Port_Moresby", "airport", "OurAirports". These entries correspond to the airport ID (airport_id), airport’s name (airport_name), city (city) and country (country) where the airport is located, airpot’s IATA (iata) and ICAO (icao) code, latitude (lat), longitude (long), altitude (alt), timezone of the airport (timezone), whether the airpot uses DST (dst), timezone in "tz" (Olson) forma, type of the airport (type), source of this data. (everything in the parentheses is the variable name, easier for future explanation)
+
+An example of data format in the route database is "AA, 24, DRW, 3999, SYD, 3361, Y, 0,737."These entries are code of the airline (airline), airline ID (airline_id), code of the source airport (source), source airpot ID (source_id), code of the destination airport (dest), Destination airport ID (dest_id), whether the flight is a codeshare(that is, not operated by Airline, but another carrier) (codeshare), number of stops on this flight (stops), codes for plane types (plane_type).  
 
 Given the information above, we will find the source airport and destination airport of each route, combine them with the corresponding geographical coordinates on the world map, and we will include all data given into a graph.
 
-The airports in the airport database will be applied as the vertices in the graph, and the routes will be used as the edges in the graph. Because one route may contain multiple stops, we will implement additional functions that divide the route into subroutes representing the edges of the graph.
+The airports in the airport database will be applied as the vertices in the graph, and the routes will be used as the edges in the graph. If one route may contain multiple stops, we will implement additional functions that divide the route into subroutes representing the edges of the graph.
+
+Among all data entries provided, airport_id, lat, and long are the essential data entries that will be used to construct the vertices of the graph. All essential data entries can be derived directly from the database. Although those entries are essential, data entries such as the airport's name might be added to optimize the efficiency of displaying the results to the user. However, unlike the essential data entries, those unessential entries’ existences will not affect the completion of the graph algorithms’ functionalities.
+
+Similarly, the essential data entries for the graph’s edges are source_id, dest_id, and distance. Source_id and dest_id can be directly derived from the database provided, and the distance will be derived by haversine formula that will be discussed later in this section. Hypothetically, the latitudes and longitudes of both source and destination airports should be added as the data entries for the edges to optimize the distance calculation performance. Keep in mind that if we already stored all data into a two dimensional array (or vector) when reading the data from the file, and the index of an airport’s data (including id and gps coordinates) directly maps to aiport_id, the search time for finding latitude and longitude of airports is constant O(1). Therefore, it would be unnecessary to include those to data entries into the edges.
+
+The graph will be weighted, and the weight of each edge will be its distance from the source airport to the destination airport. We will apply the latitudes and longitudes of the airports obtained from the airport dataset and use haversine formula to calculate the distance between two airports. Assume that latitude_1 and longitude_1 are the latitude and longitude of the source airport, latitude_2 and longitude_2 are the latitude and longitude of the destination airport. All values used in trigonometry must be converted to radians by multiplying the value by pi/180.
+
+Haversine formula would be:
+
+a = (sin((latitude_2 - latitude_1)/2))^2 + cos(latitude_1) * cos(latitude_2) * (sin((longitude_2 - longitude_1 )/2))^2 
+
+distance (in km) = 6371 * 2 * atan2(sqrt(a), sqrt(1 - a)) 
+
+This is the distance calculated for every edge of the graph.
 
 Finally, we will use Dijkstra’s Algorithm to compute the shortest route between two specific airports. The algorithm will be explained in depth in the Graph Algorithms section.
 
