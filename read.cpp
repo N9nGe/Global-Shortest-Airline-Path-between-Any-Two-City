@@ -4,10 +4,11 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <cstdlib>
 
 using namespace std;
 
-vector<vector<string>> Functions::readRoute(const string & filename) {
+vector<vector<string>> Read::readRoute(const string & filename) {
     // initialize the variables
     vector<vector<string>> allRoute;
     ifstream dataSheet (filename);
@@ -45,4 +46,88 @@ vector<vector<string>> Functions::readRoute(const string & filename) {
     // open out of the function, close in the function
     dataSheet.close();
     return allRoute;
+}
+
+map<string, vector<string>> Read::readAirportPosition(const string & filename) {
+    // initialize the variables
+    map<string, vector<string>> airport;
+    ifstream dataSheet (filename);
+    string airportId;
+    string name;
+    string city;
+    string country;
+    string iata;
+    string icao;
+    string latitude;
+    string longitude;
+    string useless;
+
+    if (dataSheet.is_open()) {
+        while (dataSheet.good()) {
+            // given value
+            getline(dataSheet, airportId, ','); 
+            getline(dataSheet, name, ',');
+            getline(dataSheet, city, ',');
+            getline(dataSheet, country, ',');
+            getline(dataSheet, iata, ',');
+            getline(dataSheet, icao, ',');
+            getline(dataSheet, latitude, ',');
+            getline(dataSheet, longitude, ',');
+            getline(dataSheet, useless, '\n');
+            if (airport.find(airportId) == airport.end()) {
+                airport[airportId].push_back(name);
+                airport[airportId].push_back(latitude);
+                airport[airportId].push_back(longitude);
+            }
+        }
+    }
+    // open out of the function, close in the function
+    dataSheet.close();
+    return airport;
+}
+
+map<string, string> Read::AirportIdDictionary(const string & filename) {
+    // initialize the variables
+    map<string, string> ID;
+    ifstream dataSheet (filename);
+    string airportId;
+    string name;
+    string city;
+    string country;
+    string iata;
+    string icao;
+    string useless;
+
+    if (dataSheet.is_open()) {
+        while (dataSheet.good()) {
+            // given value
+            getline(dataSheet, airportId, ','); 
+            getline(dataSheet, name, ',');
+            getline(dataSheet, city, ',');
+            getline(dataSheet, country, ',');
+            getline(dataSheet, iata, ',');
+            getline(dataSheet, icao, ',');
+            getline(dataSheet, useless, '\n');
+            // We just store the effective iata and icao so that we can map to airport_id
+            if (iata != "\N" &&  icao != "\N") {
+                if (ID.find(iata) == ID.end()) {
+                    ID[iata] = airportId;
+                }
+                if (ID.find(icao) == ID.end()) {
+                    ID[icao] = airportId;
+                }
+            } else if (iata != "\N" &&  icao == "\N") {
+                if (ID.find(iata) == ID.end()) {
+                    ID[iata] = airportId;
+                }
+            } else if (iata == "\N" &&  icao != "\N") {
+                if (ID.find(icao) == ID.end()) {
+                    ID[icao] = airportId;
+                }
+            } else { }
+        }
+    }
+    // open out of the function, close in the function
+    dataSheet.close();
+    return ID;
 }

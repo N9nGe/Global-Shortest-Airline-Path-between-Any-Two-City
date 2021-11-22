@@ -5,11 +5,16 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <map>
 
 using namespace std;
 
 class Read {
     public:
+        // put everyting we need into a 2D vector
         vector<vector<string>> readRoute(const string & filename);
-
+        // The key is airport_id and the value is the vector of (name, latitude, longitude)
+        map<string, vector<string>> readAirportPosition(const string & filename);
+        // The key is IATA or ICAO and the value is the airport_id
+        map<string, string> AirportIdDictionary(const string & filename);
 };
