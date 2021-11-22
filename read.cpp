@@ -12,8 +12,8 @@ vector<vector<string>> Read::readRoute(const string & filename) {
     // initialize the variables
     vector<vector<string>> allRoute;
     ifstream dataSheet (filename);
-    string airport;
-    string airportId;
+    string airline;
+    string airlineId;
     string sourceAirport;
     string sourceAirportId;
     string destinationAirport;
@@ -24,16 +24,16 @@ vector<vector<string>> Read::readRoute(const string & filename) {
         while (dataSheet.good()) {
             vector<string> route;
             // given value
-            getline(dataSheet, airport, ','); 
-            getline(dataSheet, airportId, ',');
+            getline(dataSheet, airline, ','); 
+            getline(dataSheet, airlineId, ',');
             getline(dataSheet, sourceAirport, ',');
             getline(dataSheet, sourceAirportId, ',');
             getline(dataSheet, destinationAirport, ',');
             getline(dataSheet, destinationAirportId, ',');
             getline(dataSheet, useless, '\n');
             // store value in single route
-            route.push_back(airport);
-            route.push_back(airportId);
+            route.push_back(airline);
+            route.push_back(airlineId);
             route.push_back(sourceAirport);
             route.push_back(sourceAirportId);
             route.push_back(destinationAirport);
