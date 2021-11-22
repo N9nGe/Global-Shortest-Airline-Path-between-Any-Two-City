@@ -9,9 +9,7 @@
 
 class Draw {
     public:
-/**
- * default constructor
- */
+// default constructor
         Draw() { };
     private:
 

@@ -6,9 +6,7 @@
 
 class Graph {
     public:
-/**
- * default constructor
- */
+// default constructor
         Graph() { };
     private:
     
