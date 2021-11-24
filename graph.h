@@ -3,11 +3,22 @@
  */
 #pragma once
 
+#include <vector>
+
+using namespace std;
 
 class Graph {
     public:
-// default constructor
-        Graph() { };
     private:
+        struct Vertex {
+            string vertex_id;
+            double latitude;
+            double longitude;
+        };
+
+        struct Edge {
+            pair<string, string> edge_id;
+            double distance;
+        }; 
     
 };
