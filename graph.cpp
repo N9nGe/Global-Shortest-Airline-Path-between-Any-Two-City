@@ -2,8 +2,11 @@
 
 using namespace std;
 
+Graph::Graph() { /**empty constructor*/ }
+
 Graph::Graph(const string & routefile, const string & airportfile) {
-    route = readRoute(routefile);
-    airportPosition = readAirportPosition(airportfile);
-    airportIdDictionary = AirportIdDictionary(airportfile);
+    Read data;
+    route = data.readRoute(routefile);
+    airportPosition = data.readAirportPosition(airportfile);
+    airportIdDictionary = data.AirportIdDictionary(airportfile);
 }

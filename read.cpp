@@ -109,18 +109,18 @@ map<string, string> Read::AirportIdDictionary(const string & filename) {
             getline(dataSheet, icao, ',');
             getline(dataSheet, useless, '\n');
             // We just store the effective iata and icao so that we can map to airport_id
-            if (iata != "\N" &&  icao != "\N") {
+            if (iata != "\\N" &&  icao != "\\N") {
                 if (ID.find(iata) == ID.end()) {
                     ID[iata] = airportId;
                 }
                 if (ID.find(icao) == ID.end()) {
                     ID[icao] = airportId;
                 }
-            } else if (iata != "\N" &&  icao == "\N") {
+            } else if (iata != "\\N" &&  icao == "\\N") {
                 if (ID.find(iata) == ID.end()) {
                     ID[iata] = airportId;
                 }
-            } else if (iata == "\N" &&  icao != "\N") {
+            } else if (iata == "\\N" &&  icao != "\\N") {
                 if (ID.find(icao) == ID.end()) {
                     ID[icao] = airportId;
                 }

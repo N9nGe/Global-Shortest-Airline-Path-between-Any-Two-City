@@ -16,7 +16,8 @@ class Graph {
         vector<vector<string>> route;
         map<string, vector<string>> airportPosition;
         map<string, string> airportIdDictionary;
-        Graph(const string & routefile, const string & airportfile);
+        Graph();
+        Graph(const string & routefile, const string & airportfile); 
     private:
         struct Vertex {
             string vertex_id;
@@ -97,5 +98,4 @@ class Graph {
                 return destination_id;
             }
         }; 
-    
 };

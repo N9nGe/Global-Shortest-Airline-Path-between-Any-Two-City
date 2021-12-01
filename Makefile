@@ -4,7 +4,7 @@ TEST = test
 
 # Add all object files needed for compiling:
 EXE_OBJ = main.o
-OBJS = main.o
+OBJS = main.o read.o graph.o functions.o draw.o
 
 # Generated files
 #CLEAN_RM = unsolved.png solved.png testdsets testsquaremaze \
