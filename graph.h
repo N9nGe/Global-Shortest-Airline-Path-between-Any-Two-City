@@ -6,6 +6,8 @@
 #include <vector>
 #include <string>
 
+#include "read.h"
+
 using namespace std;
 
 class Graph {
