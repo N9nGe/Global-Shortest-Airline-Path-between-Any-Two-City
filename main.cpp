@@ -13,6 +13,7 @@ using namespace std;
 int main()
 {
     // Write your own main here
+    Graph g = Graph("data/routes.dat", "data/airports.dat");
     cout << "Add your own tests here! Modify main.cpp" << endl;
     return 0;
 }

@@ -5,6 +5,7 @@
 
 #include <vector>
 #include <string>
+#include <map>
 
 #include "read.h"
 
@@ -12,6 +13,10 @@ using namespace std;
 
 class Graph {
     public:
+        vector<vector<string>> route;
+        map<string, vector<string>> airportPosition;
+        map<string, string> airportIdDictionary;
+        Graph(const string & routefile, const string & airportfile);
     private:
         struct Vertex {
             string vertex_id;
