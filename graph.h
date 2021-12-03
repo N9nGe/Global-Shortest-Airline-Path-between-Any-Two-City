@@ -212,11 +212,12 @@ class Graph {
         * Distructor of Graph
         */
         ~Graph() {
-            vertexList.clear();
-            edgeList.clear();
+            vertices.clear();
+            adjacencyList.clear();
         }
 
     private:
-        map<string, Vertex> vertexList;
-        map<string, Edge> edgeList;
+        map<string, Vertex> vertices;
+        map<string, list<Edge>> adjacencyList;
+        double calculateDistance(double sourceLat, double sourceLong, double destLat, double destLong);
 };
