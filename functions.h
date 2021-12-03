@@ -19,7 +19,7 @@ class Functions {
          * @param start start vertex of BFS
          * @return a vector in the BFS order
          */
-        vector<vertex> BFS(Graph g, vertex start);
+        //vector<vertex> BFS(Graph g, vertex start);
         // vector<vector<string>> readRoute(const string & filename);
     private:
 };

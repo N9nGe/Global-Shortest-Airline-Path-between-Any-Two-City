@@ -10,10 +10,10 @@ using namespace std;
 
 // this is a draft of BFS implementation, because for now graph implementation is not complete
 // possible missing functions in graph.cpp are vertex constructor, vertex::getId(), and vertex::getAdj()
-vector<vertex> Functions::BFS(Graph g, vertex start) {
+//vector<vertex> Functions::BFS(Graph g, vertex start) {
     // queue for BFS
-    queue<vertex> q;
-    q.push(start);
+    //queue<vertex> q;
+    /*q.push(start);
     // use a map to keep tack of visited vertex. Default initialization is unvisited, false.
     map<string, bool> visited;
     // initialize the start vertex as visited, true.
@@ -33,6 +33,6 @@ vector<vertex> Functions::BFS(Graph g, vertex start) {
                 visited[v.getId()] = true;
             }
         }
-    }
-    return result;
-}
+    }*/
+    //return result;
+//}

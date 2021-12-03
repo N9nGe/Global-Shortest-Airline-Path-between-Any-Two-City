@@ -4,8 +4,10 @@
 #pragma once
 
 #include <vector>
+#include <list>
 #include <string>
 #include <map>
+#include <iostream>
 
 #include "read.h"
 
@@ -13,16 +15,30 @@ using namespace std;
 
 class Graph {
     public:
-        vector<vector<string>> route;
-        map<string, vector<string>> airportPosition;
-        map<string, string> airportIdDictionary;
-        Graph();
-        Graph(const string & routefile, const string & airportfile); 
-    private:
         struct Vertex {
             string vertex_id;
             double latitude;
             double longitude;
+
+            Vertex()
+            : vertex_id(""), latitude(0), longitude(0)
+            {/* empty*/}
+
+            Vertex(string airportId)
+            : vertex_id(airportId), latitude(0), longitude(0)
+            {/* empty*/}
+
+            /**
+            * Constructor with vertex
+            * @param sourceAirport - sourceAirport
+            * @param destinationAirport - destinationAirport
+            */
+            Vertex(string airportId, double latitudeArg, double longitudeArg) {
+                vertex_id = airportId;
+                latitude = latitudeArg;
+                longitude = longitudeArg;
+            }
+
         };
 
         struct Edge {
@@ -97,5 +113,16 @@ class Graph {
             string getDestination() {
                 return destination_id;
             }
-        }; 
+        };
+        vector<vector<string>> route;
+        map<string, vector<string>> airportPosition;
+        map<string, string> airportIdDictionary;
+        Graph();
+        Graph(const string & routefile, const string & airportfile);
+        void insertVertex(Vertex v);
+        void removeVertex(Vertex v);
+
+    private:
+        vector<Vertex> vertices;
+        vector<list<Edge *>> edges;
 };
