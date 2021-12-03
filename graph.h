@@ -38,11 +38,42 @@ class Graph {
                 latitude = latitudeArg;
                 longitude = longitudeArg;
             }
+            
+            /**
+            * Get vertex_id of Vertex
+            */
+            string getVertexId() {
+                return vertex_id;
+            }
 
+            /**
+            * Get latitude of Vertex
+            */
+            double getLatitude() {
+                return latitude;
+            }
+
+            /**
+            * Get longitude of Vertex
+            */
+            double getLongitude() {
+                return longitude;
+            }
+
+            /**
+            * operator== of Vertex
+            * @param other - the other vertex to compare
+            */
+            bool operator==(const Vertex & other) {
+                if (this->vertex_id == other.vertex_id) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
         };
 
         struct Edge {
-            // pair<string, string> edge_id;
             string source_id;
             string destination_id;
             double distance;
@@ -117,12 +148,75 @@ class Graph {
         vector<vector<string>> route;
         map<string, vector<string>> airportPosition;
         map<string, string> airportIdDictionary;
+
+        /**
+        * Default Constructor 
+        */
         Graph();
+
+        /**
+        * Default Constructor 
+        * @param routefile - Route file
+        * @param airportfile - Airport file
+        */
         Graph(const string & routefile, const string & airportfile);
+
+        /**
+        * Get first vertex of graph
+        */
+        Vertex getFirstVertex();
+
+        /**
+        * Get first vertex of graph
+        */
+        vector<Vertex> getAdjacentVertex(Vertex v);
+
+        /**
+        * Insert Vertex
+        * @param v - the vertex need to insert
+        */
         void insertVertex(Vertex v);
+
+        /**
+        * Remove Vertex
+        * @param v - the vertex need to remove
+        */
         void removeVertex(Vertex v);
+        
+        /**
+        * Get Edge
+        * @param source - the source airport of Edge
+        * @param destination - the destination airport of Edge
+        */
+        Edge getEdge(Vertex source, Vertex destination);
+
+        /**
+        * Get Incident Edge
+        * @param v - the central vertex
+        */
+        vector<Edge> getIncidentEdge(Vertex v);
+
+        /**
+        * Insert edge
+        * @param e - the edge need to insert
+        */
+        void insertEdge(Edge e);
+
+        /**
+        * Remove edge
+        * @param e - the edge need to remove
+        */
+        void removeEdge(Edge e);
+
+        /**
+        * Distructor of Graph
+        */
+        ~Graph() {
+            vertexList.clear();
+            edgeList.clear();
+        }
 
     private:
-        vector<Vertex> vertices;
-        vector<list<Edge *>> edges;
+        map<string, Vertex> vertexList;
+        map<string, Edge> edgeList;
 };
