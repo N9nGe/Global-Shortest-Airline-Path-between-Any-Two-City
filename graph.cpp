@@ -25,6 +25,8 @@ Graph::Graph(const string & routefile, const string & airportfile) {
             double longitudeDouble = stod(longi);
             Vertex vertex(vertexId, latitudeDouble, longitudeDouble);
             vertices[vertexId] = vertex;
+            list<Edge> l;
+            adjacencyList[vertexId] = l;
         } catch (const std::invalid_argument& e) {
             continue;
         }
@@ -33,16 +35,23 @@ Graph::Graph(const string & routefile, const string & airportfile) {
     for (auto it = route.begin(); it != route.end(); ++it) {
         string sourceId = (*it)[3];
         string destId = (*it)[5];
+        if (sourceId == "\\N" || destId == "\\N") {
+            continue;
+        }
         double sLat = vertices.find(sourceId)->second.latitude;
         double sLong = vertices.find(sourceId)->second.longitude;
         double dLat = vertices.find(destId)->second.latitude;
         double dLong = vertices.find(destId)->second.longitude;
         double edgeDistance = calculateDistance(sLat, sLong, dLat, dLong);
         Edge edge(sourceId, destId, edgeDistance);
-        adjacencyList.find(sourceId)->second.push_back(edge);
-        adjacencyList.find(destId)->second.push_back(edge);
+        if (adjacencyList.find(sourceId) == adjacencyList.end()) {
+            //cout<<sourceId<<endl;
+        }
+        adjacencyList[sourceId].push_back(edge);
+        adjacencyList[destId].push_back(edge);
     }
 
+    //display vertices
     /*for (auto it = vertices.begin(); it != vertices.end(); ++it) {
         cout<<(*it).first;
         cout<<": ";
@@ -54,19 +63,46 @@ Graph::Graph(const string & routefile, const string & airportfile) {
         cout<<""<<endl;
     }*/
 
-    for (auto it = adjacencyList.begin(); it != adjacencyList.end(); ++it) {
-        cout<<(*it).first;
-        cout<<": ";
-        for (auto lit = (*it).second.begin(); lit != (*it).second.end(); ++lit) {
-            cout<<(*lit).source_id;
-            cout<<", ";
-            cout<<(*lit).destination_id;
-            cout<<", ";
-            cout<<(*lit).distance;
-            cout<<" -> ";
-        }
-        cout<<""<<endl;
+    //display adjacency list
+    /*for (auto it = adjacencyList.begin(); it != adjacencyList.end(); ++it) {
+        //if ((*it).first == "507") {
+            cout<<(*it).first;
+            cout<<": ";
+            for (auto lit = (*it).second.begin(); lit != (*it).second.end(); ++lit) {
+                cout<<(*lit).source_id;
+                cout<<", ";
+                cout<<(*lit).destination_id;
+                cout<<", ";
+                cout<<(*lit).distance;
+                cout<<" -> ";
+            }
+            cout<<""<<endl;
+        //}
+    }*/
+}
+
+vector<Graph::Vertex> Graph::getAdjacentVertex(Vertex v) {
+    vector<Graph::Vertex> vs;
+    string id = v.vertex_id;
+    if (adjacencyList.find(id) == adjacencyList.end()) {
+        return vs;
     }
+    auto it = adjacencyList.find(id);
+    for (auto lit = it->second.begin(); lit != it->second.end(); ++lit) {
+        string neighborId;
+        if ((*lit).source_id != id) {
+            neighborId = (*lit).source_id;
+        } else {
+            neighborId = (*lit).destination_id;
+        }
+        //cout<<neighborId;
+        //cout<<" -> ";
+        auto vit = vertices.find(neighborId);
+        if (vit != vertices.end()) {
+            vs.push_back((*vit).second);
+        }
+    }
+    return vs;
 }
 
 double Graph::calculateDistance(double sourceLat, double sourceLong, double destLat, double destLong) {
