@@ -40,7 +40,7 @@ Analyze the shorest path under different weather situations
    - The first method is using several 1-dimension vectors to store different string variables, for example, std::vector airportName, std::vector city, std::vector latitude. In this case, the pro is we can have a clear category of every type of variable. The con is if there is one missing element in a vector, the following element will not be in correspondence with the order of airports or airlines.
    - The second method is using a 2-dimension vector in the form of std::vector<std::vector<<std::string>>>. We will first store each element of an airport or airline into a 1-dimension vector, such as storing “London”, “43.035599” into std::vector londonAirport, and then push back every 1-dimension vector to the 2-dimension vector as a collection of all airports or airlines. In this case, we can make sure the order of each airport or airline is correct, and this is our final implementation.
 
-## **Week 4 (form 2021/11/22 to 2021/11/28)**
+## **Week 4 (from 2021/11/22 to 2021/11/28)**
 
 **Goals:** Keeping implementation functions that reading and deal with the data form the dataset
 
@@ -49,3 +49,13 @@ Analyze the shorest path under different weather situations
 1. Dealing with the data of airport.dat.
    - The first function is using std::map<std::string, std::vector<std::string>> to build up a dictionary so that we can get what we need faster. The keys of the map are airport_ids and the values is a 1D vectors which include airport_name, latitude and longitude in this order.
    - The second function is using std::map<std::string, std::string> to buuld up a dictionary so that we can get what we need faster. The key are IATAs and ICAOs and the values are the airport_ids because we need one of IATAs and ICAOs to search back airport_id. If we have two, it is better.
+
+## **Week 5 (2021/12/02)**
+
+**Goals:** Designing and developing the graph class, and its vertices and edges
+
+**Description:**
+
+1. Use the data exported from airport.dat and route.dat and construct vertices and edges. Then, add those vertices and edges to the graph as an adjacency list.
+   - Use a map data structure to represent the adjacency list. The key of the map is the vertex, and the value of the map is a list of edges that are adjacent to the key vertex. Therefore, as long as we find the source and destination vertices ids, a new edge can be added quickly to the adjacency list.
+   - We also come up with a more optimized solution. The graph with contain two maps. The first map will have string as the key and Vertex as the value. The second map will have string as the key and adjacency list as the value. Using this method, we don't have to construct a Vertex when adding new edges to the list. Also, we can check the vertex data quickly.
