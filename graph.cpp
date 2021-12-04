@@ -1,6 +1,7 @@
 #include "graph.h"
 #include <iostream>
 #include <sstream>
+#include <cmath>
 
 using namespace std;
 
@@ -64,8 +65,8 @@ Graph::Graph(const string & routefile, const string & airportfile) {
     }*/
 
     //display adjacency list
-    /*for (auto it = adjacencyList.begin(); it != adjacencyList.end(); ++it) {
-        //if ((*it).first == "507") {
+    for (auto it = adjacencyList.begin(); it != adjacencyList.end(); ++it) {
+        if ((*it).first == "10209") {
             cout<<(*it).first;
             cout<<": ";
             for (auto lit = (*it).second.begin(); lit != (*it).second.end(); ++lit) {
@@ -77,8 +78,13 @@ Graph::Graph(const string & routefile, const string & airportfile) {
                 cout<<" -> ";
             }
             cout<<""<<endl;
-        //}
-    }*/
+        }
+    }
+}
+
+Graph::Vertex Graph::getFirstVertex() {
+    Vertex v;
+    return v;
 }
 
 vector<Graph::Vertex> Graph::getAdjacentVertex(Vertex v) {
@@ -105,6 +111,30 @@ vector<Graph::Vertex> Graph::getAdjacentVertex(Vertex v) {
     return vs;
 }
 
+void Graph::insertVertex(Vertex v) {
+    string id = v.vertex_id;
+    if (vertices.find(id) == vertices.end()) {
+        vertices[id] = v;
+        list<Graph::Edge> l;
+        if (adjacencyList.find(id) == adjacencyList.end()) {
+            adjacencyList[id] = l;
+        }
+    }
+}
+
+void Graph::removeVertex(Vertex v) {
+    string id = v.vertex_id;
+    vertices.erase(id);
+    adjacencyList.erase(id);
+}
+
 double Graph::calculateDistance(double sourceLat, double sourceLong, double destLat, double destLong) {
-    return -1;
+    double earthRadius = 6371;
+    double phiOne = sourceLat * (M_PI / 180);
+    double phiTwo = destLat * (M_PI / 180);
+    double deltaPhi = (destLat-sourceLat) * (M_PI / 180);
+    double deltaLambda = (destLong - sourceLong) * (M_PI / 180);
+    double a = (sin(deltaPhi / 2) * sin(deltaPhi / 2)) + (cos(phiOne) * cos(phiTwo) * sin(deltaLambda / 2) * sin(deltaLambda / 2));
+    double distance = earthRadius * 2 * atan2(sqrt(a), sqrt(1-a));
+    return distance;
 }

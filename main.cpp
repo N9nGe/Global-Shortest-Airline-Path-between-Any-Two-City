@@ -18,11 +18,11 @@ int main()
     string id = "507";
     Graph::Vertex v(id);
     vector<Graph::Vertex> vs = g.getAdjacentVertex(v);
-    cout<<id;
+    /*cout<<id;
     cout<<": ";
     for (auto it = vs.begin(); it != vs.end(); ++it) {
         cout<<(*it).vertex_id;
         cout<<" -> ";
-    }
+    }*/
     return 0;
 }
