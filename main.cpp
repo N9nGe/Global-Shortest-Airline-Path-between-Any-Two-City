@@ -13,16 +13,45 @@ using namespace std;
 int main()
 {
     // Write your own main here
-    Graph g("data/routes.dat", "data/airports.dat"); //try create a Graph object
+    Graph g("route_testcase_1.dat", "Airport_testcase_1.dat"); //try create a Graph object
+    //Graph g2;
     //cout << "Add your own tests here! Modify main.cpp" << endl;
-    string id = "507";
+    string id = "3364";
+    //cout<<g.getVertex(id).vertex_id;
+    //cout<<" ";
     Graph::Vertex v(id);
+    Graph::Edge e("3364", "3366", 1046.256371);
+    //g.insertVertex(v);
+    //cout<<g.getFirstVertex().vertexToString();
     vector<Graph::Vertex> vs = g.getAdjacentVertex(v);
-    /*cout<<id;
+    vector<Graph::Edge> es = g.getIncidentEdge(v);
+    cout<<id;
     cout<<": ";
-    for (auto it = vs.begin(); it != vs.end(); ++it) {
-        cout<<(*it).vertex_id;
+    for (auto it = es.begin(); it != es.end(); ++it) {
+        //cout<<(*it).vertexToString();
+        cout<<(*it).edgeToString();
         cout<<" -> ";
-    }*/
+    }
+    cout<<""<<endl;
+    g.removeEdge(e);
+    es = g.getIncidentEdge(v);
+    cout<<id;
+    cout<<": ";
+    for (auto it = es.begin(); it != es.end(); ++it) {
+        //cout<<(*it).vertexToString();
+        cout<<(*it).edgeToString();
+        cout<<" -> ";
+    }
+    cout<<""<<endl;
+    g.removeEdge(e);
+    g.insertEdge(e);
+    es = g.getIncidentEdge(v);
+    cout<<id;
+    cout<<": ";
+    for (auto it = es.begin(); it != es.end(); ++it) {
+        //cout<<(*it).vertexToString();
+        cout<<(*it).edgeToString();
+        cout<<" -> ";
+    }
     return 0;
 }

@@ -71,6 +71,11 @@ class Graph {
                     return false;
                 }
             }
+
+            string vertexToString() {
+                string str = vertex_id + ", " + to_string(latitude) + ", " + to_string(longitude);
+                return str;
+            }
         };
 
         struct Edge {
@@ -144,6 +149,11 @@ class Graph {
             string getDestination() {
                 return destination_id;
             }
+
+            string edgeToString() {
+                string str = source_id + ", " + destination_id + ", " + to_string(distance);
+                return str;
+            }
         };
         vector<vector<string>> route;
         map<string, vector<string>> airportPosition;
@@ -165,6 +175,8 @@ class Graph {
         * Get first vertex of graph
         */
         Vertex getFirstVertex();
+
+        Vertex getVertex(string vertexId);
 
         /**
         * Get first vertex of graph
