@@ -75,7 +75,7 @@ map<string, vector<string>> Read::readAirportPosition(const string & filename) {
             getline(dataSheet, longitude, ',');
             getline(dataSheet, useless, '\n');
             if (airport.find(airportId) == airport.end()) {
-                airport[airportId].push_back(name);
+                airport[airportId].push_back(name.substr(1, name.size() - 2));
                 airport[airportId].push_back(latitude);
                 airport[airportId].push_back(longitude);
             }
@@ -110,18 +110,18 @@ map<string, string> Read::AirportIdDictionary(const string & filename) {
             getline(dataSheet, useless, '\n');
             // We just store the effective iata and icao so that we can map to airport_id
             if (iata != "\\N" &&  icao != "\\N") {
-                if (ID.find(iata) == ID.end()) {
+                if (ID.find(iata.substr(1, iata.size() - 2)) == ID.end()) {
                     ID[iata.substr(1, iata.size() - 2)] = airportId;
                 }
-                if (ID.find(icao) == ID.end()) {
+                if (ID.find(icao.substr(1, icao.size() - 2)) == ID.end()) {
                     ID[icao.substr(1, icao.size() - 2)] = airportId;
                 }
             } else if (iata != "\\N" &&  icao == "\\N") {
-                if (ID.find(iata) == ID.end()) {
+                if (ID.find(iata.substr(1, iata.size() - 2)) == ID.end()) {
                     ID[iata.substr(1, iata.size() - 2)] = airportId;
                 }
             } else if (iata == "\\N" &&  icao != "\\N") {
-                if (ID.find(icao) == ID.end()) {
+                if (ID.find(icao.substr(1, icao.size() - 2)) == ID.end()) {
                     ID[icao.substr(1, icao.size() - 2)] = airportId;
                 }
             } else { }
