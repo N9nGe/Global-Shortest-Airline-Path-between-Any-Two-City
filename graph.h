@@ -176,7 +176,15 @@ class Graph {
         */
         Vertex getFirstVertex();
 
+        /**
+        * Get specific vertex of graph
+        */
         Vertex getVertex(string vertexId);
+
+        /**
+        * Get all vertices of graph
+        */
+        vector<Vertex> getAllVertices();
 
         /**
         * Get first vertex of graph

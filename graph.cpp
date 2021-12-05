@@ -98,6 +98,16 @@ Graph::Vertex Graph::getVertex(string vertexId) {
     return v;
 }
 
+vector<Graph::Vertex> Graph::getAllVertices() {
+    vector<Graph::Vertex> result;
+    for (auto it = adjacencyList.begin(); it != adjacencyList.end(); ++it) {
+        if ((*it).second.size() >= 1) {
+            result.push_back(getVertex((*it).first));
+        }
+    }
+    return result;
+}
+
 vector<Graph::Vertex> Graph::getAdjacentVertex(Vertex v) {
     vector<Graph::Vertex> vs;
     string id = v.vertex_id;
