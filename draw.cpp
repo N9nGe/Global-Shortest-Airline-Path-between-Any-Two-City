@@ -26,8 +26,8 @@ void drawpoint(PNG * image, double latitude, double longitude) {
     unsigned int y = ((height / 2) - (latitude * height) / 180);
     
     // make the point bigger and more precise.
-    for (int i = x - 2; i <= x + 2; i++) {
-        for (int j = y - 2; j <= y + 2; j++) {
+    for (unsigned int i = x - 2; i <= x + 2; i++) {
+        for (unsigned int j = y - 2; j <= y + 2; j++) {
             HSLAPixel & pixel = image->getPixel(i , j);
             // using blue point
             pixel.h =240;
