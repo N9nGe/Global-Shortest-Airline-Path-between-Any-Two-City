@@ -17,6 +17,7 @@ class Draw {
         PNG * open();
         void drawpoint(PNG * image, double latitude, double longitude);
         void drawline(PNG * image, double latitude_1, double longitude_1, double latitude_2, double longitude_2);
+        void drawlineHelper(PNG * image, unsigned int x_1, unsigned int y_1, unsigned int x_2, unsigned int y_2);
         void drawmap(string & routefile, string & airportfile, Graph::Vertex start, Graph::Vertex stop);
         void output(PNG * image);
 };

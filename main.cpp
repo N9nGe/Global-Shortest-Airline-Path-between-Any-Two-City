@@ -53,5 +53,23 @@ int main()
         cout<<(*it).edgeToString();
         cout<<" -> ";
     }
+
+    //test draw functions 
+    Draw draw;
+    PNG * graph = draw.open();
+    vector<Graph::Vertex> list = g.getAllVertices();
+    cout << list.size() << endl;
+    double a = list[50].getLatitude();
+    double b = list[50].getLongitude();
+    double c = list[80].getLatitude();
+    double d = list[80].getLongitude();
+
+    cout << endl;
+    cout << a << " " << b << " " << c << " " << d << endl;
+    draw.drawpoint(graph, a, b);
+    draw.drawpoint(graph, c, d);
+    draw.drawline(graph, a, b, c, d);
+    draw.output(graph);
+
     return 0;
 }
