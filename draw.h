@@ -6,11 +6,17 @@
 #include "cs225/HSLAPixel.h"
 #include "graph.h"
 #include "functions.h"
+#include "read.h"
+#include <string>
+
+using namespace std;
+using namespace cs225;
 
 class Draw {
     public:
-// default constructor
-        Draw() { };
-    private:
-
+        PNG * open();
+        void drawpoint(PNG * image, double latitude, double longitude);
+        void drawline(PNG * image, double latitude_1, double longitude_1, double latitude_2, double longitude_2);
+        void drawmap(string & routefile, string & airportfile, Graph::Vertex start, Graph::Vertex stop);
+        void output(PNG * image);
 };
