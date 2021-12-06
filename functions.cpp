@@ -43,18 +43,18 @@ vector<Graph::Vertex> Functions::BFS(Graph g) {
 map<Graph::Vertex, Graph::Vertex> Functions::Dijkstra(Graph g) {
     Graph::Vertex start = g.getFirstVertex();
     // priority queue for Dijkstra
-    typedef pair<int, Graph::Vertex> iPair;
-    priority_queue<iPair, vector<iPair>, greater<iPair>> pq;
+    typedef pair<double, Graph::Vertex> iPair;
+    priority_queue<iPair, vector<iPair>, greater<iPair> > pq;
     // record each vertex's distance and path
-    map<Graph::Vertex, int> dist;
+    map<Graph::Vertex, double> dist;
     map<Graph::Vertex, Graph::Vertex> path;
     map<Graph::Vertex, bool> visited;
-    // buggy code:
+    // initialization
     // for (Graph::Vertex& v: g.getAllVertices()) {
     //     dist[v] = __INT_MAX__;
     //     path[v] = Graph::Vertex();
     // }
-    // // initialize the start point
+    // initialize the start point
     // pq.push(iPair(0, start));
     // dist[start] = 0;
     // visited[start] = true;
@@ -69,7 +69,7 @@ map<Graph::Vertex, Graph::Vertex> Functions::Dijkstra(Graph g) {
     //             Graph::Edge edge = g.getEdge(curr, v);
     //             double weight = edge.getDistance();
     //             // update distance
-    //             if (weight + dist[curr] < dist[v]) {
+    //             if ((weight + dist[curr]) < dist[v]) {
     //                 dist[v] = weight + dist[curr];
     //                 path[v] = curr;
     //                 pq.push(iPair(dist[v], v));
