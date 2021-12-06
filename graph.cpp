@@ -51,7 +51,7 @@ Graph::Graph(const string & routefile, const string & airportfile) {
         }
         Vertex v(sourceId);
         //vector<Vertex> getAdjacentVertex()
-        adjacencyList[sourceId].push_front(edge);
+        adjacencyList[sourceId].push_back(edge);
     }
 
     //display vertices

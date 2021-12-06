@@ -9,6 +9,7 @@
 #include "../read.h"
 #include "../graph.h"
 #include "../cs225/catch/catch.hpp"
+#include "../functions.h"
 
 using namespace std;
 
@@ -50,32 +51,46 @@ TEST_CASE("Reading file correctly",) {
     REQUIRE(g.airportPosition["3942"] == NGO);
 }
 
+TEST_CASE("Construct Graph successfully") {
+
+}
+
 TEST_CASE("BFS traversal 1") { 
     Graph g("route_testcase_1.dat", "Airport_testcase_1.dat");
     Functions test_1;
     vector<string> sum_1_id;
-    vector<Vertex> sum_2;
+    vector<Graph::Vertex> sum_2;
     vector<string> sum_2_id;
     // need order of bfs to write sum_1
-    
-    sum_2 = Functions.BFS(g);
-    for (int i = 0, i < sum_2.size(), i++) {
+    sum_1_id.push_back("3364");
+    sum_1_id.push_back("3395");
+    sum_1_id.push_back("8043");
+    sum_1_id.push_back("3393");
+    sum_1_id.push_back("3372");
+    sum_1_id.push_back("3373");
+    sum_1_id.push_back("3942");
+    sum_1_id.push_back("3366");
+    sum_1_id.push_back("6366");
+    sum_1_id.push_back("3371");
+    sum_1_id.push_back("4144");
+    sum_2 = test_1.BFS(g);
+    for (size_t i = 0; i < sum_2.size(); i++) {
         sum_2_id.push_back(sum_2[i].vertex_id);
     }
-    REQUIRE(sum_1_id = sum_2_id);
+    REQUIRE(sum_1_id == sum_2_id);
 }
 
 TEST_CASE("BFS traversal 2") { 
     Graph g("route_testcase_2.dat", "Airport_testcase_2.dat");
     Functions test_2;
     vector<string> sum_1_id;
-    vector<Vertex> sum_2;
+    vector<Graph::Vertex> sum_2;
     vector<string> sum_2_id;
     // need order of bfs to write sum_1
-
-    sum_2 = Functions.BFS(g);
-    for (int i = 0, i < sum_2.size(), i++) {
+    
+    sum_2 = test_2.BFS(g);
+    for (size_t i = 0; i < sum_2.size(); i++) {
         sum_2_id.push_back(sum_2[i].vertex_id);
     }
-    REQUIRE(sum_1_id = sum_2_id);
+    REQUIRE(sum_1_id == sum_2_id);
 }

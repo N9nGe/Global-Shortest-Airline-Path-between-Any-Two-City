@@ -52,7 +52,8 @@ Analyze the shorest path under different weather situations
 
 ## **Week 5 (2021/12/02)**
 
-**Goals:** Designing and developing the graph class, and its vertices and edges
+**Goals:** Designing and developing the graph class, and its vertices and edges;
+            
 
 **Description:**
 
