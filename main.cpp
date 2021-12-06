@@ -13,7 +13,8 @@ using namespace std;
 int main()
 {
     // Write your own main here
-    Graph g("route_testcase_1.dat", "Airport_testcase_1.dat"); //try create a Graph object
+    Graph g("data/routes.dat", "data/airports.dat"); //try create a Graph object
+    
     //Graph g2;
     //cout << "Add your own tests here! Modify main.cpp" << endl;
     string id = "3364";
@@ -53,18 +54,18 @@ int main()
         cout<<(*it).edgeToString();
         cout<<" -> ";
     }
-
+    
     //test draw functions 
     Draw draw;
     PNG * graph = draw.open();
     vector<Graph::Vertex> list = g.getAllVertices();
-    cout << list.size() << endl;
-    double a = list[50].getLatitude();
-    double b = list[50].getLongitude();
-    double c = list[80].getLatitude();
-    double d = list[80].getLongitude();
-
     cout << endl;
+    cout << list.size() << endl;
+    double a = list[10].getLatitude();
+    double b = list[10].getLongitude();
+    double c = list[3100].getLatitude();
+    double d = list[3100].getLongitude();
+    
     cout << a << " " << b << " " << c << " " << d << endl;
     draw.drawpoint(graph, a, b);
     draw.drawpoint(graph, c, d);

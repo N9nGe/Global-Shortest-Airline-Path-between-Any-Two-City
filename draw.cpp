@@ -7,7 +7,8 @@
 
 using namespace std;
 using namespace cs225;
-    PNG * Draw::open() {
+
+PNG * Draw::open() {
     PNG * image = new PNG();
     image->readFromFile("map.png");
     return image;
@@ -52,7 +53,11 @@ void Draw::drawline(PNG * image, double latitude_1, double longitude_1, double l
 
     unsigned int delta_y = float(max(y_2, y_1) - min(y_2, y_1));
     unsigned int delta_x = float(max(x_2, x_1) - min(x_2, x_1));  
-    cout << delta_x << " " << delta_y << " " << y_2 - y_1 << endl;
+    cout << delta_x << " " << delta_y << " " << endl;
+    // if (delta_x > width / 2) {
+    //     drawlineHelper_2(image, x_1, y_1, x_2, y_2);
+    //     return;
+    // }
     if (delta_y > delta_x) {
         drawlineHelper(image, x_1, y_1, x_2, y_2);
         cout << "here_helper" << endl;
@@ -60,13 +65,17 @@ void Draw::drawline(PNG * image, double latitude_1, double longitude_1, double l
     }
 
     unsigned int ratio = round(float(delta_x) / float(delta_y));
-    cout << x_1 << " " << y_1 << " " << x_2 << " " << y_2 << " " << ratio << endl;
+    //unsigned int ratio = round(realRatio);
+    float reminder = float(delta_x) / float(delta_y) - ratio;
+    
+    cout << x_1 << " " << y_1 << " " << x_2 << " " << y_2 << " " << ratio << " " << reminder << endl;
     //make sure y_1 is the airport with higher latitude(smaller y coordinate)
     if (y_1 > y_2) {        
         swap(y_1, y_2);
         swap(x_1, x_2);
     }
     unsigned int curr_x = x_1;
+    float count = 0;
     if (x_2 < x_1) {
         for (unsigned int j = y_1; j < y_2; j++) {
             for (unsigned int i = curr_x; i >= curr_x - ratio && i >= x_2; i--) {
@@ -76,8 +85,16 @@ void Draw::drawline(PNG * image, double latitude_1, double longitude_1, double l
                 pixel.s = 1;
                 pixel.l = 0.5;
                 pixel.a = 1;
+                count += reminder;
+                if (count >= 1) {
+                    i--;
+                    //j--;
+                    count -= 1;
+                }
             }
             curr_x -= ratio;
+            //ratio = round(float(x_2 - curr_x) / float(y_2 - j));
+            //reminder = float(x_2 - curr_x) / float(y_2 - j) - ratio;
         }
     } else {
         for (unsigned int j = y_1; j < y_2; j++) {
@@ -88,8 +105,15 @@ void Draw::drawline(PNG * image, double latitude_1, double longitude_1, double l
                 pixel.s = 1;
                 pixel.l = 0.5;
                 pixel.a = 1;
+                count += reminder;
+                if (count >= 1) {
+                    i--;
+                    j--;
+                    count -= 1;
+                }
             }
             curr_x += ratio;
+            //ratio = round(float(x_2 - curr_x) / float(y_2 - j));
         }
     }
     cout << "here" << endl;
@@ -131,5 +155,13 @@ void Draw::drawlineHelper(PNG * image, unsigned int x_1, unsigned int y_1, unsig
             curr_y += ratio;
         }
     }
+    return;
+}
+
+void drawlineHelper_2(PNG * image, unsigned int x_1, unsigned int y_1, unsigned int x_2, unsigned int y_2) {
+    return;
+}
+
+void drawmap(string & routefile, string & airportfile, Graph::Vertex start, Graph::Vertex stop) {
     return;
 }
