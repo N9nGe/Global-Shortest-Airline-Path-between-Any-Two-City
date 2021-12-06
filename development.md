@@ -65,7 +65,7 @@ Analyze the shorest path under different weather situations
    - We also come up with a more optimized solution. The graph with contain two maps. The first map will have string as the key and Vertex as the value. The second map will have string as the key and adjacency list as the value. Using this method, we don't have to construct a Vertex when adding new edges to the list. Also, we can check the vertex data quickly.
 2. 
 
-3. 
+3. Write drawpoint and drawline function to draw airports and airlines on the map image. We convert the latitude and longitude to x and y coordinate of the PNG according to PNG's width and height. Every airport is drawn as a 5*5 blue square on the image. When implementing drawline function, we firstly used the ratio between differenece of two airports' x and y coordinate to draw the airline. However, we found that the error of this method is too large. If two airports are far away, there will be an obvious gap between the airline and the destination. Therefore, we implemented this function with Bresenham's Line Drawing Algorithm instead. This algorithm allow us to draw a close approximation to a straight line between two points on the PNG.    
 
 4. Designing the test_case:
    - Select four test cases (route_testcase_1.dat, route_testcase_2.dat, Airport_testcase_1.dat, Airport_testcase_2.dat) as the test case so that we can test our code by using the relavant small dataset.
