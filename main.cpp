@@ -61,12 +61,12 @@ int main()
     vector<Graph::Vertex> list = g.getAllVertices();
     cout << endl;
     cout << list.size() << endl;
-    double a = list[10].getLatitude();
-    double b = list[10].getLongitude();
-    double c = list[3100].getLatitude();
-    double d = list[3100].getLongitude();
-    
-    cout << a << " " << b << " " << c << " " << d << endl;
+       
+    double a = -19.4623;
+    double b = 27.5525;
+    double c = 64.9381;
+    double d = 65.4858;    
+
     draw.drawpoint(graph, a, b);
     draw.drawpoint(graph, c, d);
     draw.drawline(graph, a, b, c, d);
