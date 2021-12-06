@@ -52,7 +52,29 @@ TEST_CASE("Reading file correctly",) {
 }
 
 TEST_CASE("Construct Graph successfully") {
+    Graph g("route_testcase_1.dat", "Airport_testcase_1.dat");
+    // test vertex
+    Graph::Vertex PEK("3364", 40.080101013183594, 116.58499908447266);
+    Graph::Vertex NNG("3373", 22.608299255371094, 108.1719970703125);
+    Graph::Vertex CTU("3395", 30.578500747680664, 103.9469985961914);
+    bool test_firstVertex = (g.getFirstVertex() == PEK);
+    bool test_getvertex_1 = (g.getVertex("3364") == PEK);
+    bool test_getvertex_2 = (g.getVertex("3373") == NNG);
+    bool test_getvertex_3 = (g.getVertex("3395") == CTU);
 
+    REQUIRE(test_firstVertex == true);
+    REQUIRE(test_getvertex_1 == true);
+    REQUIRE(test_getvertex_2 == true);
+    REQUIRE(test_getvertex_3 == true);
+
+    // test edge
+    Graph::Edge CTU_PEK("3395", "3364", double (1556));
+    Graph::Edge PEK_NNG("3364", "3373", double (2098));
+    bool test_getedge_1 = (g.getEdge(CTU, PEK) == CTU_PEK);
+    bool test_getedge_2 = (g.getEdge(PEK, NNG) == PEK_NNG);
+    
+    REQUIRE(test_getedge_1 == true);
+    REQUIRE(test_getedge_2 == true);
 }
 
 TEST_CASE("BFS traversal 1") { 
@@ -87,7 +109,13 @@ TEST_CASE("BFS traversal 2") {
     vector<Graph::Vertex> sum_2;
     vector<string> sum_2_id;
     // need order of bfs to write sum_1
-    
+    sum_1_id.push_back("1555");
+    sum_1_id.push_back("3364");
+    sum_1_id.push_back("3484");
+    sum_1_id.push_back("3830");
+    sum_1_id.push_back("193");
+    sum_1_id.push_back("3877");
+    sum_1_id.push_back("178");
     sum_2 = test_2.BFS(g);
     for (size_t i = 0; i < sum_2.size(); i++) {
         sum_2_id.push_back(sum_2[i].vertex_id);

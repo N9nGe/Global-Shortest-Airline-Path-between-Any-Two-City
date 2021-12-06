@@ -52,11 +52,23 @@ Analyze the shorest path under different weather situations
 
 ## **Week 5 (2021/12/02)**
 
-**Goals:** Designing and developing the graph class, and its vertices and edges;
-            
+**Goals:**  Designing and developing the graph class, and its vertices and edges;
+            Finish BFS algorithm;
+            Designing and developing draw functions;
+            Designing the test_cases
+
 
 **Description:**
 
 1. Use the data exported from airport.dat and route.dat and construct vertices and edges. Then, add those vertices and edges to the graph as an adjacency list.
    - Use a map data structure to represent the adjacency list. The key of the map is the vertex, and the value of the map is a list of edges that are adjacent to the key vertex. Therefore, as long as we find the source and destination vertices ids, a new edge can be added quickly to the adjacency list.
    - We also come up with a more optimized solution. The graph with contain two maps. The first map will have string as the key and Vertex as the value. The second map will have string as the key and adjacency list as the value. Using this method, we don't have to construct a Vertex when adding new edges to the list. Also, we can check the vertex data quickly.
+2. 
+
+3. 
+
+4. Designing the test_case:
+   - Select four test cases (route_testcase_1.dat, route_testcase_2.dat, Airport_testcase_1.dat, Airport_testcase_2.dat) as the test case so that we can test our code by using the relavant small dataset.
+   - Test whether the read functions works. By using REQUIRE() to test the size of the route and the size of the airportPosition. Also, test whether the airportIdDictionary works. Test whether the content of the route and airportPosition is like what we expected.
+   - Test whether the graph constructor works. By using REQUIRE() to test the functions of the Graph like getFirstVertex(), getVertex(), getEdge().
+   - Test whether the BFS traversal works. By using REQUIRE() to test the order of traversal of vertices and edges.
