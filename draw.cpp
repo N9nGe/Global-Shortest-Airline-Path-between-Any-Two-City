@@ -42,43 +42,47 @@ void Draw::drawpoint(PNG * image, double latitude, double longitude) {
 
 
 void Draw::drawline(PNG * image, double latitude_1, double longitude_1, double latitude_2, double longitude_2) {
-    unsigned int width = image->width();
-    unsigned int height = image->height();
+    int width = image->width();
+    int height = image->height();
 
     // change the coordinate to correspond to the point on map
-    unsigned int x_1 = ((width / 2) + (longitude_1 * width) / 360);
-    unsigned int y_1 = ((height / 2) - (latitude_1 * height) / 180);
-    unsigned int x_2 = ((width / 2) + (longitude_2 * width) / 360);
-    unsigned int y_2 = ((height / 2) - (latitude_2 * height) / 180);
+    int x_1 = ((width / 2) + (longitude_1 * width) / 360);
+    int y_1 = ((height / 2) - (latitude_1 * height) / 180);
+    int x_2 = ((width / 2) + (longitude_2 * width) / 360);
+    int y_2 = ((height / 2) - (latitude_2 * height) / 180);
 
-    unsigned int delta_y = float(max(y_2, y_1) - min(y_2, y_1));
-    unsigned int delta_x = float(max(x_2, x_1) - min(x_2, x_1));  
-    cout << delta_x << " " << delta_y << " " << endl;
-    // if (delta_x > width / 2) {
-    //     drawlineHelper_2(image, x_1, y_1, x_2, y_2);
-    //     return;
-    // }
+    int delta_y = float(max(y_2, y_1) - min(y_2, y_1));
+    int delta_x = float(max(x_2, x_1) - min(x_2, x_1));  
 
     float ratio = float(delta_y) / float(delta_x);
-
-    if (delta_y > delta_x) {
-        drawlineHelper(image, x_1, y_1, x_2, y_2, ratio);
-        cout << "here_helper" << endl;
-        return;
-    }
+    int step_x = 1;
+    int step = 1;
     
-    cout << x_1 << " " << y_1 << " " << x_2 << " " << y_2 << " " << ratio << " " << endl;
     //make sure y_1 is the airport with lower latitude(larger y coordinate)
     if (y_1 < y_2) {        
         swap(y_1, y_2);
         swap(x_1, x_2);
     }
-    unsigned int curr_y = y_1;
-    float error = 0;
-    int step_x = 1;
-    if (x_1 > x_2) {
+
+    //make necessary changes when the airline should go in another direction  
+    if (delta_x > width / 2) {
         step_x = -1;
-    } 
+        step = -1;
+        ratio = float(delta_y) / (width - float(delta_x));
+    }
+
+    //write another case when delta_y is greater than delta_x
+    if (ratio > 1) {
+        drawlineHelper(image, x_1, y_1, x_2, y_2, 1/ratio, step);
+        return;
+    }
+
+    int curr_y = y_1;
+    float error = 0;
+    if (x_1 > x_2) {
+        step_x = -step_x;
+    }
+    cout << step_x << " " << x_1 << " " << x_2 << endl;
     while (x_1 != x_2) {
         HSLAPixel & pixel = image->getPixel(x_1, curr_y);
         // using red point
@@ -92,20 +96,26 @@ void Draw::drawline(PNG * image, double latitude_1, double longitude_1, double l
             error -= 1;
         }
         x_1 += step_x;
+        if (x_1 >= width) {
+            x_1 = 0;
+        }
+        if (x_1 < 0) {
+            x_1 = width-1;
+        }
     }
-    cout << "here" << endl;
     return;
 }
 
-void Draw::drawlineHelper(PNG * image, unsigned int x_1, unsigned int y_1, unsigned int x_2, unsigned int y_2, float ratio) {
-    ratio = 1/ratio; 
+void Draw::drawlineHelper(PNG * image, int x_1, int y_1, int x_2, int y_2, float ratio, int step) {
+    int width = int(image->width());
+    int step_y = 1;
+
     if (x_1 > x_2) {        
         swap(y_1, y_2);
         swap(x_1, x_2);
     }
-    unsigned int curr_x = x_1;
+    int curr_x = x_1;
     float error = 0;
-    int step_y = 1;
     if (y_1 > y_2) {
         step_y = -1;
     } 
@@ -118,15 +128,17 @@ void Draw::drawlineHelper(PNG * image, unsigned int x_1, unsigned int y_1, unsig
         pixel.a = 1;
         error += ratio;
         if (error >= 0.5) {
-            curr_x++;
+            curr_x+=step;
+            if (curr_x >= width) {
+            curr_x = 0;
+            }
+            if (curr_x < 0) {
+                curr_x = width-1;
+            }
             error -= 1;
         }
         y_1 += step_y;
     }
-    return;
-}
-
-void drawlineHelper_2(PNG * image, unsigned int x_1, unsigned int y_1, unsigned int x_2, unsigned int y_2) {
     return;
 }
 
