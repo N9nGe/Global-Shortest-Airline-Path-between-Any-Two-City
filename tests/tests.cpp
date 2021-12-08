@@ -139,7 +139,7 @@ TEST_CASE("Shortest Path_1""NGO--CTU") {
     vector<string> points_2;
     points_2.push_back(temp);
     map<string, string>::iterator lookup = path.find(temp);
-    while (path.find((*lookup).second) != path.end()) {
+    while (lookup->second != "") {
         points_2.push_back((*lookup).second);
         lookup = path.find((*lookup).second);
     }
@@ -161,7 +161,7 @@ TEST_CASE("Shortest Path_2" "KWL--NGO") {
     vector<string> points_2;
     points_2.push_back(temp);
     map<string, string>::iterator lookup = path.find(temp);
-    while (path.find((*lookup).second) != path.end()) {
+    while (lookup->second != "") {
         points_2.push_back((*lookup).second);
         lookup = path.find((*lookup).second);
     }

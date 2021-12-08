@@ -77,19 +77,21 @@ int main()
     cout << theMap.size() << endl;
     draw.drawmap("data/routes.dat", "data/airports.dat", YYC, FCO);
 
-    // draw.open();
-    // for (size_t i = 0; i < list.size() - 1; i++) {
-    //     Graph::Vertex first = list[i];
-    //     Graph::Vertex second = list[i+1];
-    //     double x_1 = first.latitude;
-    //     double y_1 = first.longitude;
-    //     double x_2 = second.latitude;
-    //     double y_2 = second.longitude;
-    //     draw.drawpoint(graph, x_1, y_1);
-    //     draw.drawpoint(graph, x_2, y_2);
-    //     draw.drawline(graph, x_1, y_1, x_2, y_2);
-    // }
-    // draw.output(graph);
+    Draw draw_2;
+    PNG * graph_2 = draw_2.open();
+    for (size_t i = 0; i < list.size() - 1; i++) {
+        Graph::Vertex first = list[i];
+        Graph::Vertex second = list[i+1];
+        double x_1 = first.latitude;
+        double y_1 = first.longitude;
+        double x_2 = second.latitude;
+        double y_2 = second.longitude;
+        draw.drawpoint(graph_2, x_1, y_1);
+        draw.drawpoint(graph_2, x_2, y_2);
+        draw.drawline(graph_2, x_1, y_1, x_2, y_2);
+    }
+    
+    graph_2->writeToFile("all_airlines.png");
 
 
     return 0;
