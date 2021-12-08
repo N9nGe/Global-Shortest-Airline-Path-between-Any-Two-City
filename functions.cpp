@@ -59,19 +59,20 @@ map<string, string> Functions::Dijkstra(Graph g, Graph::Vertex start, Graph::Ver
     visited[start.getVertexId()] = true;
     while(pq.top().second != end.getVertexId()) {
         // take the first element
-        Graph::Vertex curr = pq.top().second;
+        string curr = pq.top().second;
+        Graph::Vertex temp = g.getVertex(curr);
         pq.pop();
         // visited vertex
-        visited[curr.getVertexId()] = true;
+        visited[curr] = true;
         // check adjacent vertices
-        for(Graph::Vertex& v: g.getAdjacentVertex(curr)) {
+        for(Graph::Vertex& v: g.getAdjacentVertex(temp)) {
             if (!visited[v.getVertexId()]) {
-                Graph::Edge edge = g.getEdge(curr, v);
+                Graph::Edge edge = g.getEdge(temp, v);
                 double weight = edge.getDistance();
                 // update distance if necessary
-                if ((weight + dist[curr.getVertexId()]) < dist[v.getVertexId()]) {
-                    dist[v.getVertexId()] = weight + dist[curr.getVertexId()];
-                    path[v.getVertexId()] = curr.getVertexId();
+                if ((weight + dist[curr]) < dist[v.getVertexId()]) {
+                    dist[v.getVertexId()] = weight + dist[curr];
+                    path[v.getVertexId()] = curr;
                     pq.push(iPair(dist[v.getVertexId()], v.getVertexId()));
                 }
             }
