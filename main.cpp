@@ -57,20 +57,25 @@ int main()
     
     //test draw functions 
     Draw draw;
-    PNG * graph = draw.open();
-    vector<Graph::Vertex> list = g.getAllVertices();
-    cout << endl;
-    cout << list.size() << endl;
+    // PNG * graph = draw.open();
+    // vector<Graph::Vertex> list = g.getAllVertices();
+    // cout << endl;
+    // cout << list.size() << endl;
        
-    double a = -19.4623;
-    double b = 27.5525;
-    double c = 64.9381;
-    double d = 65.4858;    
+    // double a = -19.4623;
+    // double b = 27.5525;
+    // double c = 64.9381;
+    // double d = 65.4858;    
 
-    draw.drawpoint(graph, a, b);
-    draw.drawpoint(graph, c, d);
-    draw.drawline(graph, a, b, c, d);
-    draw.output(graph);
+    // draw.drawpoint(graph, a, b);
+    // draw.drawpoint(graph, c, d);
+    // draw.drawline(graph, a, b, c, d);
+    // draw.output(graph);
+
+    //test drawmap
+    Graph::Vertex CTU("3395", 30.578500747680664, 103.9469985961914);
+    Graph::Vertex NGO("3942", 34.8583984375, 136.80499267578125);
+    draw.drawmap("route_testcase_1.dat", "Airport_testcase_1.dat", NGO, CTU);
 
     return 0;
 }

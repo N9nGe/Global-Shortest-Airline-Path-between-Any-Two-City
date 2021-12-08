@@ -142,17 +142,23 @@ void Draw::drawlineHelper(PNG * image, int x_1, int y_1, int x_2, int y_2, float
     return;
 }
 
-void Draw::drawmap(string & routefile, string & airportfile, Graph::Vertex start, Graph::Vertex stop) {
+void Draw::drawmap(const string & routefile, const string & airportfile, Graph::Vertex start, Graph::Vertex stop) {
     cs225::PNG * image = open();
     Graph g(routefile, airportfile);
     Functions temp;
     map<string, string> path = temp.Dijkstra(g, start, stop);
     vector<string> points;
-    points.push_back(start.vertex_id);
-    string curr = start.vertex_id;
-    for (size_t i = 0; i < path.size(); i++) {
-        curr = path[curr];
-        points.push_back(curr);
+    //points.push_back(start.vertex_id);
+    string curr = stop.vertex_id;
+    // for (size_t i = 0; i < path.size(); i++) {
+    //     curr = path[curr];
+    //     points.push_back(curr);
+    // }
+    points.push_back(curr);
+    map<string, string>::iterator lookup = path.find(curr);
+    while (path.find((*lookup).second) != path.end()) {
+        points.push_back((*lookup).second);
+        lookup = path.find((*lookup).second);
     }
 
     for (size_t i = 0; i < points.size() - 1; i++) {
@@ -161,7 +167,7 @@ void Draw::drawmap(string & routefile, string & airportfile, Graph::Vertex start
         double x_1 = first.latitude;
         double y_1 = first.longitude;
         double x_2 = second.latitude;
-        double y_2 = second.latitude;
+        double y_2 = second.longitude;
         drawpoint(image, x_1, y_1);
         drawpoint(image, x_2, y_2);
         drawline(image, x_1, y_1, x_2, y_2);

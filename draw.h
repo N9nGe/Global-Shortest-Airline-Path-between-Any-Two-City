@@ -18,6 +18,6 @@ class Draw {
         void drawpoint(PNG * image, double latitude, double longitude);
         void drawline(PNG * image, double latitude_1, double longitude_1, double latitude_2, double longitude_2);
         void drawlineHelper(PNG * image, int x_1, int y_1, int x_2, int y_2, float ratio, int step);
-        void drawmap(string & routefile, string & airportfile, Graph::Vertex start, Graph::Vertex stop);
+        void drawmap(const string & routefile, const string & airportfile, Graph::Vertex start, Graph::Vertex stop);
         void output(PNG * image);
 };
