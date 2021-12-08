@@ -122,3 +122,48 @@ TEST_CASE("BFS traversal 2") {
     }
     REQUIRE(sum_1_id == sum_2_id);
 }
+
+
+TEST_CASE("Shortest Path_1""NGO--CTU") {
+    Graph g("route_testcase_1.dat", "Airport_testcase_1.dat");
+    Functions test;
+    Graph::Vertex PEK("3364", 40.080101013183594, 116.58499908447266);
+    Graph::Vertex CTU("3395", 30.578500747680664, 103.9469985961914);
+    Graph::Vertex NGO("3942", 34.8583984375, 136.80499267578125);
+    string temp = CTU.vertex_id;
+    map<string, string> path = test.Dijkstra(g, NGO, CTU);
+    vector<string> points_1;
+    points_1.push_back(CTU.vertex_id);
+    points_1.push_back(PEK.vertex_id);
+    points_1.push_back(NGO.vertex_id);
+    vector<string> points_2;
+    points_2.push_back(temp);
+    map<string, string>::iterator lookup = path.find(temp);
+    while (path.find((*lookup).second) != path.end()) {
+        points_2.push_back((*lookup).second);
+        lookup = path.find((*lookup).second);
+    }
+    REQUIRE(points_1 == points_2);
+}
+
+TEST_CASE("Shortest Path_2" "KWL--NGO") {
+    Graph g("route_testcase_1.dat", "Airport_testcase_1.dat");
+    Functions test;
+    Graph::Vertex KWL("3372", 25.21809959411621, 110.03900146484375);
+    Graph::Vertex PEK("3364", 40.080101013183594, 116.58499908447266);
+    Graph::Vertex NGO("3942", 34.8583984375, 136.80499267578125);
+    string temp = NGO.vertex_id;
+    map<string, string> path = test.Dijkstra(g, KWL, NGO);
+    vector<string> points_1;
+    points_1.push_back(NGO.vertex_id);
+    points_1.push_back(PEK.vertex_id);
+    points_1.push_back(KWL.vertex_id);
+    vector<string> points_2;
+    points_2.push_back(temp);
+    map<string, string>::iterator lookup = path.find(temp);
+    while (path.find((*lookup).second) != path.end()) {
+        points_2.push_back((*lookup).second);
+        lookup = path.find((*lookup).second);
+    }
+    REQUIRE(points_1 == points_2);
+}
