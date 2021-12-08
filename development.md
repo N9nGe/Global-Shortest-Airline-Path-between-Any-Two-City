@@ -52,9 +52,9 @@ Analyze the shorest path under different weather situations
 
 ## **Week 5 (2021/12/02)**
 
-**Goals:**  Designing and developing the graph class, and its vertices and edges;
-            Finish BFS algorithm;
-            Designing and developing draw functions;
+**Goals:**  Designing and developing the graph class, and its vertices and edges
+            Finish BFS algorithm
+            Designing and developing draw functions
             Designing the test_cases
 
 
@@ -73,3 +73,20 @@ Analyze the shorest path under different weather situations
    - Test whether the read functions works. By using REQUIRE() to test the size of the route and the size of the airportPosition. Also, test whether the airportIdDictionary works. Test whether the content of the route and airportPosition is like what we expected.
    - Test whether the graph constructor works. By using REQUIRE() to test the functions of the Graph like getFirstVertex(), getVertex(), getEdge().
    - Test whether the BFS traversal works. By using REQUIRE() to test the order of traversal of vertices and edges.
+
+
+## **Week 6 (2021/12/09)**
+
+**Goals:**  Finish Dijkstra's algorithm
+            Finish drawline functions and drawmap functions
+            Write the Readme.md
+            Designing the test_cases for Dijkstra's algorithm
+
+
+**Description:**
+
+1. Our Dijkstra's algorithm has bugs when initilizing the priority queue. We tried to initialize it in different ways but none of the methods work. Then we decided to change the data structure of the output of the Dijkstra's algorithm. We used Map<std::string, std::string> instead of Map<Graph::Vertex, Graph::Vertex>. The bug disappeared when we changed the datastructure and the Dijkstra's algorithm was successfully finished.
+
+2. Drawline function is improved by including the case when the horizontal distance between two airports is greater than half of the image width. In this case, in order to simulate the real situation, the airline will be drawed through another direction, which means the line will be divided into two parts at left and right ends of the map. After finishing the drawlilne function, we finished the drawmap function which integrate Dijkstra's algorithm function, drawpoint function, and drawline function.
+
+3. Two test cases for Dijkstra's algorithm were written. But there seems to be some problems with Dijkstra's algorithm becasue the test case didn't pass. 
