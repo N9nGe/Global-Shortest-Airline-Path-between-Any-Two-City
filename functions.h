@@ -27,7 +27,7 @@ class Functions {
          * @param destination destination vertex
          * @return path of the shortest route
          */
-        map<Graph::Vertex, Graph::Vertex> Dijkstra(Graph g);
+        map<string, string> Dijkstra(Graph g, Graph::Vertex start, Graph::Vertex end);
         // vector<vector<string>> readRoute(const string & filename);
     private:
 };
