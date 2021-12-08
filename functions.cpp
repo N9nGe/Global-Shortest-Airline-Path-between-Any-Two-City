@@ -50,13 +50,15 @@ map<string, string> Functions::Dijkstra(Graph g, Graph::Vertex start, Graph::Ver
     map<string, bool> visited;
     // initialization
     for (Graph::Vertex& v: g.getAllVertices()) {
-        dist[v.getVertexId()] = __DBL_MAX__;
-        path[v.getVertexId()] = "";
+        string vertexId = v.getVertexId();
+        dist[vertexId] = __DBL_MAX__;
+        path[vertexId] = "";
     }
     // initialize the start point
-    pq.push(iPair(0, start.getVertexId()));
-    dist[start.getVertexId()] = 0;
-    visited[start.getVertexId()] = true;
+    string startId = start.getVertexId();
+    pq.push(iPair(0, startId));
+    dist[startId] = 0;
+    visited[startId] = true;
     while(pq.top().second != end.getVertexId()) {
         // take the first element
         string curr = pq.top().second;
@@ -66,14 +68,15 @@ map<string, string> Functions::Dijkstra(Graph g, Graph::Vertex start, Graph::Ver
         visited[curr] = true;
         // check adjacent vertices
         for(Graph::Vertex& v: g.getAdjacentVertex(temp)) {
-            if (!visited[v.getVertexId()]) {
+            string vertexId = v.getVertexId();
+            if (!visited[vertexId]) {
                 Graph::Edge edge = g.getEdge(temp, v);
                 double weight = edge.getDistance();
                 // update distance if necessary
-                if ((weight + dist[curr]) < dist[v.getVertexId()]) {
-                    dist[v.getVertexId()] = weight + dist[curr];
-                    path[v.getVertexId()] = curr;
-                    pq.push(iPair(dist[v.getVertexId()], v.getVertexId()));
+                if ((weight + dist[curr]) < dist[vertexId]) {
+                    dist[vertexId] = weight + dist[curr];
+                    path[vertexId] = curr;
+                    pq.push(iPair(dist[vertexId], vertexId));
                 }
             }
         }
