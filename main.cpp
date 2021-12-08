@@ -14,6 +14,7 @@ int main()
 {
     // Write your own main here
     Graph g("data/routes.dat", "data/airports.dat"); //try create a Graph object
+    //Graph g("route_testcase_1.dat", "Airport_testcase_1.dat");
     
     //Graph g2;
     //cout << "Add your own tests here! Modify main.cpp" << endl;
@@ -57,25 +58,39 @@ int main()
     
     //test draw functions 
     Draw draw;
-    // PNG * graph = draw.open();
-    // vector<Graph::Vertex> list = g.getAllVertices();
-    // cout << endl;
-    // cout << list.size() << endl;
-       
-    // double a = -19.4623;
-    // double b = 27.5525;
-    // double c = 64.9381;
-    // double d = 65.4858;    
+    PNG * graph = draw.open();
 
-    // draw.drawpoint(graph, a, b);
-    // draw.drawpoint(graph, c, d);
-    // draw.drawline(graph, a, b, c, d);
-    // draw.output(graph);
+    Functions func;
+    vector<Graph::Vertex> list = func.BFS(g);
+    vector<string> str_list;
+    for (size_t i = 0; i < list.size(); i++) {
+        str_list.push_back(list[i].vertex_id);
+        cout << list[i].vertex_id << " ";
+    }
+    cout << endl;
+    cout << "BFS size is " << list.size() << endl;
 
     //test drawmap
-    Graph::Vertex CTU("3395", 30.578500747680664, 103.9469985961914);
-    Graph::Vertex NGO("3942", 34.8583984375, 136.80499267578125);
-    draw.drawmap("route_testcase_1.dat", "Airport_testcase_1.dat", NGO, CTU);
+    Graph::Vertex YYC("178", 51.113899231, -114.019996643);
+    Graph::Vertex FCO("1555", 41.8002778, 12.2388889);
+    map<string, string> theMap = func.Dijkstra(g, YYC, FCO);
+    cout << theMap.size() << endl;
+    draw.drawmap("data/routes.dat", "data/airports.dat", YYC, FCO);
+
+    // draw.open();
+    // for (size_t i = 0; i < list.size() - 1; i++) {
+    //     Graph::Vertex first = list[i];
+    //     Graph::Vertex second = list[i+1];
+    //     double x_1 = first.latitude;
+    //     double y_1 = first.longitude;
+    //     double x_2 = second.latitude;
+    //     double y_2 = second.longitude;
+    //     draw.drawpoint(graph, x_1, y_1);
+    //     draw.drawpoint(graph, x_2, y_2);
+    //     draw.drawline(graph, x_1, y_1, x_2, y_2);
+    // }
+    // draw.output(graph);
+
 
     return 0;
 }

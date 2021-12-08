@@ -82,7 +82,6 @@ void Draw::drawline(PNG * image, double latitude_1, double longitude_1, double l
     if (x_1 > x_2) {
         step_x = -step_x;
     }
-    cout << step_x << " " << x_1 << " " << x_2 << endl;
     while (x_1 != x_2) {
         HSLAPixel & pixel = image->getPixel(x_1, curr_y);
         // using red point
@@ -156,11 +155,10 @@ void Draw::drawmap(const string & routefile, const string & airportfile, Graph::
     // }
     points.push_back(curr);
     map<string, string>::iterator lookup = path.find(curr);
-    while (path.find((*lookup).second) != path.end()) {
+    while (lookup->second != "") {
         points.push_back((*lookup).second);
         lookup = path.find((*lookup).second);
     }
-
     for (size_t i = 0; i < points.size() - 1; i++) {
         Graph::Vertex first = g.getVertex(points[i]);
         Graph::Vertex second = g.getVertex(points[i+1]);
