@@ -143,5 +143,20 @@ void Draw::drawlineHelper(PNG * image, int x_1, int y_1, int x_2, int y_2, float
 }
 
 void drawmap(string & routefile, string & airportfile, Graph::Vertex start, Graph::Vertex stop) {
-    return;
+    cs225::PNG * image;
+    image = open();
+    Graph g(routefile, airportfile);
+    Functions temp;
+    map<string, string> path = temp.Dijkstra(g, start, stop);
+    vector<string> points;
+    points.push_back(start.vertex_id);
+    string curr = start.vertex_id;
+    for (int i = 0; i < path.size(); i++) {
+        curr = path[curr];
+        points.push_back(curr);
+    }
+    for (int i = 0; i < points.size() - 1; i++) {
+        Vertex first = g.getVertex(points[i]);
+    }
+    
 }
