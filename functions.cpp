@@ -14,8 +14,6 @@ vector<Graph::Vertex> Functions::BFS(Graph g) {
     // queue for BFS
     queue<Graph::Vertex> q;
     q.push(start);
-    // // count all visited vertices
-    // int count = 0;
     // use a map to keep tack of visited vertex. Default initialization is unvisited, false.
     map<string, bool> visited;
     // initialize the start vertex as visited, true.
@@ -28,7 +26,33 @@ vector<Graph::Vertex> Functions::BFS(Graph g) {
         q.pop();
         // store path
         result.push_back(curr);
-        // count++;
+        // find unvisited adjacent vertex and update
+        for (Graph::Vertex& v: g.getAdjacentVertex(curr)) {
+            if (!visited[v.getVertexId()]) {
+                q.push(v);
+                visited[v.getVertexId()] = true;
+            }
+        }
+    }
+    return result;
+}
+
+vector<Graph::Vertex> Functions::BFS(Graph g, Graph::Vertex start) {
+    // queue for BFS
+    queue<Graph::Vertex> q;
+    q.push(start);
+    // use a map to keep tack of visited vertex. Default initialization is unvisited, false.
+    map<string, bool> visited;
+    // initialize the start vertex as visited, true.
+    visited[start.getVertexId()] = true;
+    // vector to store the BFS path
+    vector<Graph::Vertex> result;
+    while(!q.empty()) {
+        // take the first element
+        Graph::Vertex curr = q.front();
+        q.pop();
+        // store path
+        result.push_back(curr);
         // find unvisited adjacent vertex and update
         for (Graph::Vertex& v: g.getAdjacentVertex(curr)) {
             if (!visited[v.getVertexId()]) {

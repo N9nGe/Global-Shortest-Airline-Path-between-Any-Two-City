@@ -16,10 +16,18 @@ class Functions {
         /** 
          * BFS traversal of a given graph
          * @param g the graph to traverse
-         * @param start start vertex
          * @return a vector in the BFS order
          */
         vector<Graph::Vertex> BFS(Graph g);
+
+        /** 
+         * BFS traversal of a given graph and given strat vertex
+         * @param g the graph to traverse
+         * @param start start vertex
+         * @return a vector in the BFS order
+         */
+        vector<Graph::Vertex> BFS(Graph g, Graph::Vertex strat);
+
         /** 
          * Dijkstra to find the shortest path
          * @param g the graph to traverse
@@ -28,6 +36,5 @@ class Functions {
          * @return path of the shortest route
          */
         map<string, string> Dijkstra(Graph g, Graph::Vertex start, Graph::Vertex end);
-        // vector<vector<string>> readRoute(const string & filename);
     private:
 };
