@@ -124,7 +124,7 @@ TEST_CASE("BFS traversal 2") {
 }
 
 
-TEST_CASE("Shortest Path_1""NGO--CTU") {
+TEST_CASE("Shortest Path_1" "NGO--CTU") {
     Graph g("route_testcase_1.dat", "Airport_testcase_1.dat");
     Functions test;
     Graph::Vertex PEK("3364", 40.080101013183594, 116.58499908447266);
