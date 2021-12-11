@@ -98,11 +98,8 @@ The Makefile will also produce a test executable. The following command will mak
 
 To run a specific test case:
 
-    ./test "Reading file correctly" #To run Reading file correctly
-
+    ./test "Reading file correctly" #Reading file correctly
     ./test "Construct Graph successfully" #Construct Graph successfully
-
     ./test "BFS traversal 1" #BFS traversal
-
     ./test "Shortest Path_1""NGO--CTU" #Shortest Path between NGO to CTU
 
