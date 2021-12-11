@@ -18,8 +18,8 @@ Graph::Graph(const string & routefile, const string & airportfile) {
         cout<<(*it).second[1];
         cout<<""<<endl;*/
         string vertexId = (*it).first;
-        string lat = (*it).second[1];
-        string longi = (*it).second[2];
+        string lat = (*it).second[0];
+        string longi = (*it).second[1];
         //skip incorrect dataset
         try {
             double latitudeDouble = stod(lat);

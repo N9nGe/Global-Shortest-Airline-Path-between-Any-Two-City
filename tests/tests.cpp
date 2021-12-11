@@ -41,10 +41,8 @@ TEST_CASE("Reading file correctly",) {
 
     vector<string> PEK;
     vector<string> NGO;
-    PEK.push_back("Beijing Capital International Airport");
     PEK.push_back("40.080101013183594");
     PEK.push_back("116.58499908447266");
-    NGO.push_back("Chubu Centrair International Airport");
     NGO.push_back("34.8583984375");
     NGO.push_back("136.80499267578125");
     REQUIRE(g.airportPosition["3364"] == PEK);

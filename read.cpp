@@ -75,7 +75,6 @@ map<string, vector<string>> Read::readAirportPosition(const string & filename) {
             getline(dataSheet, longitude, ',');
             getline(dataSheet, useless, '\n');
             if (airport.find(airportId) == airport.end()) {
-                airport[airportId].push_back(name.substr(1, name.size() - 2));
                 airport[airportId].push_back(latitude);
                 airport[airportId].push_back(longitude);
             }
