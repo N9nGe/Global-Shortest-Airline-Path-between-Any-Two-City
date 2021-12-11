@@ -79,7 +79,15 @@ Main class will output all airports traversed in BFS and the size of the connect
 
 ## **Test cases**
 
-The project also has auto test code that is located in the “/tests” folder.
+The project also has auto test code that is located in the “/tests” folder. Additional databases that are used in the test suite is located in the project directory: “Airport_testcase_1.dat”, “Airport_testcase_2.dat”, “route_testcase_1.dat”, and “route_testcase_2.dat”. 
+
+Airports in databases are arbitrarily selected from the full-scale databases, and corresponding routes are added to the route test case database. We used smaller-scaled databases because the expected results in test cases are manually calculated by hand to maintain the accuracy and purpose of the autotest. However, the code works perfectly with full-scale databases in main.cpp.
+
+There are 4 types of test cases:
+- Reading file correctly
+- Construct Graph successfully
+- BFS traversal
+- Shortest Path
 
 ## **Testing**
 
@@ -87,3 +95,14 @@ The Makefile will also produce a test executable. The following command will mak
 
     make test
     ./test
+
+To run a specific test case:
+
+    ./test "Reading file correctly" #To run Reading file correctly
+
+    ./test "Construct Graph successfully" #Construct Graph successfully
+
+    ./test "BFS traversal 1" #BFS traversal
+
+    ./test "Shortest Path_1""NGO--CTU" #Shortest Path between NGO to CTU
+
