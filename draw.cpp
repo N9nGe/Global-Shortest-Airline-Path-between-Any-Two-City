@@ -170,6 +170,14 @@ void Draw::drawmap(const string & routefile, const string & airportfile, Graph::
         drawpoint(image, x_2, y_2);
         drawline(image, x_1, y_1, x_2, y_2);
     }
+    cout << "The shortest path is shown below: " << endl;
+    for (size_t i = points.size() - 1; i >= 0 && i < points.size(); i--) {
+        if (i > 0) {
+            cout << g.getVertex(points[i]).vertex_id << " -> ";
+            continue;
+        }
+            cout << g.getVertex(points[i]).vertex_id << endl;
+    }
     output(image);
     return;
 }
