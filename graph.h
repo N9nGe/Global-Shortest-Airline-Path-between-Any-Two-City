@@ -229,6 +229,13 @@ class Graph {
         void removeEdge(Edge e);
 
         /**
+        * Check if there is any edge that goes into the vertex (required for directed)
+        * Return a true if there is an edge that goes into the vertex, false otherwise.
+        * @param v - the vertex that is going to be checked
+        */
+        bool routeToVertex(Vertex v);
+
+        /**
         * Distructor of Graph
         */
         ~Graph() {

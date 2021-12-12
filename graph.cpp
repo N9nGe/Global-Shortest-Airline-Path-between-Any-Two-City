@@ -155,6 +155,18 @@ void Graph::removeEdge(Graph::Edge e) {
     }
 }
 
+bool Graph::routeToVertex(Graph::Vertex v) {
+    bool connected = false;
+    for (auto it = route.begin(); it != route.end(); ++it) {
+        string sourceId = (*it)[3];
+        string destId = (*it)[5];
+        if (destId == v.vertex_id) {
+            connected = true;
+        }
+    }
+    return connected;     
+}
+
 double Graph::calculateDistance(double sourceLat, double sourceLong, double destLat, double destLong) {
     double earthRadius = 6371;
     double phiOne = sourceLat * (M_PI / 180);

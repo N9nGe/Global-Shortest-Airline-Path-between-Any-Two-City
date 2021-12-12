@@ -53,12 +53,16 @@ Main.cpp is divided into 4 sections and each section has a comment above describ
 
 Users can also focus on a specific functionality by commenting other sections out. However, it is recommended to keep the graph constructed for all usages.
 
-Additionally, users can modify the airports and routes databases, if they have customized databases, by changing the values of airportsDir and routesDir at line a and b to:
+Additionally, users can modify the airports and routes databases, if they have customized databases, by changing the values of airportsDir and routesDir at line 15 and 16 to:
 
 	string airportsDir = “airport database file directory”;
 	string routesDir = “route database file directory”;
 
-Users can also input different airport IDs to find the shortest path between them. To achieve this, users can modify the values of startId and endId at line a and b:
+Users can change different airport ID to start the BFS traversal by changing bfsStartId at line 20:
+
+  string bfsStartId = "starting airport’s id";
+
+Users can also input different airport IDs to find the shortest path between them. To achieve this, users can modify the values of startId and endId at line 54 and 56:
 
 	string startId = “starting airport’s id”;
 	string endId = “destination airport’s id”;
@@ -75,7 +79,22 @@ Then run then program:
 
 ## **Results**
 
-Main class will output all airports traversed in BFS and the size of the connected graph  in the terminal. Then the class will store a map image consisting of all routes and airports to "all_airlines.png". Also, the class will output all airports contained in the shortest path between two airports and store the path as an image named as "output_map.png".
+Main class will output the first airport visited and the last airport visited in the BFS traversal and the size of the connected graph in the terminal. Then the class will store a map image consisting of all routes and airports to "all_airlines.png" in the project directory. Also, the class will output all airports contained in the shortest path between two airports and store the path as an image named as "output_map.png" in the shortest directory.
+
+Result in the terminal:
+
+![terminal result](./document_images/readme_imgs/result1.png)
+
+
+BFS Traversal on the map "all_airlines.png"
+
+![map1](./all_airlines.png)
+
+
+Shortest path on the map "output_map.png"
+
+![map2](./output_map.png)
+
 
 ## **Test cases**
 

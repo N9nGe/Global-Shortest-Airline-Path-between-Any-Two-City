@@ -45,6 +45,8 @@ int main()
     
     all_airlines->writeToFile("all_airlines.png");
 
+    cout << "" << endl;
+
     //Find the shortest path between two airports and draw it on a map
     Draw drawPath;
     PNG * shortestPath = drawPath.open();
@@ -56,8 +58,8 @@ int main()
     Graph::Vertex endTemp = g.getVertex(endId);
     Graph::Vertex start(startId, startTemp.latitude, startTemp.longitude);
     Graph::Vertex end(endId, endTemp.latitude, endTemp.longitude);
-    if (g.getAdjacentVertex(start).size() < 1 || g.getAdjacentVertex(end).size() < 1) {
-        cout<<"invalid airport id, please choose airports that have route to other airports."<<endl;
+    if (g.getAdjacentVertex(start).size() < 1 || !g.routeToVertex(end)) {
+        cout<<"invalid airport id, please choose airports that have airline route to other vertex (some airports don't have departure)."<<endl;
         return 0;
     }
     drawPath.drawmap(routesDir, airportsDir, start, end);
