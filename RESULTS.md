@@ -25,11 +25,19 @@ Graph has two maps: map<string, Vertex> vertices and map<string, list<Edge>> adj
 
 map vertices:
 
-vertex_id: vertex_id, latitude, longitude
+| vertex_id | Vertex(vertex_id, latitude, longitude) |
+| :-------: | :----------------------------: |
+| 507 | 507, 51.4706, -0.461941 |
+| 3830 | 3830, 41.9786, -87.9048|
+...
 
 map adjacencyList:
 
-vertex_id: source_id_1, destination_id_1, distance_1  ->  source_id_2, destination_id_2, distance_2  ->  source_id_3, destination_id_3, distance_3
+| vertex_id | Edge(source_id_1, destination_id_1, distance_1)  ->  Edge(source_id_2, destination_id_2, distance_2)  ->  Edge(source_id_3, destination_id_3, distance_3) -> ... |
+| :-------: | :-------------------------------------------------------------------------: |
+| 507 | (507, 344, distance_1) -> (507, 342, distance_2) -> (507, 350, distance_3) -> ... |
+| 3830 | (3830, 4019, distance_1) -> (3830, 5718, distance_2) -> ... |
+...
 
 To test the graph's functionality, we can focus on two criteria: getVertex() and getEdge().
 
