@@ -82,7 +82,7 @@ Then run then program:
 
 ## **Results**
 
-Main class will output the first airport visited and the last airport visited in the BFS traversal and the size of the connected graph in the terminal. Then the class will store a map image consisting of all routes and airports to "all_airlines.png" in the project directory. Also, the class will output all airports contained in the shortest path between two airports and store the path as an image named as "output_map.png" in the shortest directory.
+Main class will output the first airport visited and the last airport visited in the BFS traversal and the size of the connected graph in the terminal. Then the class will store a map image consisting of all routes and airports to "all_airlines.png" in the project directory. Also, the class will output all airports contained in the shortest path between two airports and store the path as an image named as "output_map.png" in the project directory.
 
 Result in the terminal:
 
