@@ -9,6 +9,7 @@ using namespace std;
 using namespace cs225;
 
 PNG * Draw::open() {
+    //Initilize image with the original world map PNG
     PNG * image = new PNG();
     image->readFromFile("map.png");
     return image;
