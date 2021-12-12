@@ -31,9 +31,9 @@ class Functions {
         /** 
          * Dijkstra to find the shortest path
          * @param g the graph to traverse
-         * @param source start vertex
-         * @param destination destination vertex
-         * @return path of the shortest route
+         * @param start start vertex
+         * @param end destination vertex
+         * @return former vertex of the destination
          */
         map<string, string> Dijkstra(Graph g, Graph::Vertex start, Graph::Vertex end);
     private:
