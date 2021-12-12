@@ -5,6 +5,9 @@ Final Project repo for ngao4-yiming14-zhai11-txiao5
 
 **Name: Gabriel Gao(ngao4), Yiming Zhao (yiming14), Tiancheng Xiao(txiao5), Haoyu Zhai(zhai11)**
 
+## **Project presentation video**
+https://youtu.be/Bsvvu_ICgtQ
+
 ## **Project functionality**
 
 The project is able to:
