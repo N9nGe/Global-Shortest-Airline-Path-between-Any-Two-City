@@ -109,7 +109,7 @@ void Draw::drawline(PNG * image, double latitude_1, double longitude_1, double l
 void Draw::drawlineHelper(PNG * image, int x_1, int y_1, int x_2, int y_2, float ratio, int step) {
     int width = int(image->width());
     int step_y = 1;
-
+    
     if (x_1 > x_2) {        
         swap(y_1, y_2);
         swap(x_1, x_2);
@@ -143,6 +143,7 @@ void Draw::drawlineHelper(PNG * image, int x_1, int y_1, int x_2, int y_2, float
 }
 
 void Draw::drawmap(const string & routefile, const string & airportfile, Graph::Vertex start, Graph::Vertex stop) {
+    //initialize variables
     cs225::PNG * image = open();
     Graph g(routefile, airportfile);
     Functions temp;
@@ -150,11 +151,13 @@ void Draw::drawmap(const string & routefile, const string & airportfile, Graph::
     vector<string> points;
     string curr = stop.vertex_id;
     points.push_back(curr);
+    //iterate through output of the Dijkstra algorithm
     map<string, string>::iterator lookup = path.find(curr);
     while (lookup->second != "") {
         points.push_back((*lookup).second);
         lookup = path.find((*lookup).second);
     }
+    //draw airports and routes on the map
     for (size_t i = 0; i < points.size() - 1; i++) {
         Graph::Vertex first = g.getVertex(points[i]);
         Graph::Vertex second = g.getVertex(points[i+1]);
@@ -166,6 +169,7 @@ void Draw::drawmap(const string & routefile, const string & airportfile, Graph::
         drawpoint(image, x_2, y_2);
         drawline(image, x_1, y_1, x_2, y_2);
     }
+    //print shortest path information
     cout << "The shortest path is shown below: " << endl;
     for (size_t i = points.size() - 1; i >= 0 && i < points.size(); i--) {
         if (i > 0) {
