@@ -13,10 +13,6 @@ Graph::Graph(const string & routefile, const string & airportfile) {
     airportPosition = data.readAirportPosition(airportfile);
     airportIdDictionary = data.AirportIdDictionary(airportfile);
     for (auto it = airportPosition.begin(); it != airportPosition.end(); ++it) {
-        /*cout<<(*it).first;
-        cout<<", ";
-        cout<<(*it).second[1];
-        cout<<""<<endl;*/
         string vertexId = (*it).first;
         string lat = (*it).second[0];
         string longi = (*it).second[1];
@@ -25,9 +21,6 @@ Graph::Graph(const string & routefile, const string & airportfile) {
             double latitudeDouble = stod(lat);
             double longitudeDouble = stod(longi);
             Vertex vertex(vertexId, latitudeDouble, longitudeDouble);
-            /*vertices[vertexId] = vertex;
-            list<Edge> l;
-            adjacencyList[vertexId] = l;*/
             insertVertex(vertex);
         } catch (const std::invalid_argument& e) {
             continue;
@@ -46,38 +39,9 @@ Graph::Graph(const string & routefile, const string & airportfile) {
         double dLong = vertices.find(destId)->second.longitude;
         double edgeDistance = calculateDistance(sLat, sLong, dLat, dLong);
         Edge edge(sourceId, destId, edgeDistance);
-        if (adjacencyList.find(sourceId) == adjacencyList.end()) {
-            //cout<<sourceId<<endl;
-        }
         Vertex v(sourceId);
-        //vector<Vertex> getAdjacentVertex()
         adjacencyList[sourceId].push_back(edge);
     }
-
-    //display vertices
-    /*for (auto it = vertices.begin(); it != vertices.end(); ++it) {
-        cout<<(*it).first;
-        cout<<": ";
-        cout<<(*it).second.vertexToString();
-        cout<<""<<endl;
-    }*/
-
-    //display adjacency list
-    /*for (auto it = adjacencyList.begin(); it != adjacencyList.end(); ++it) {
-        if ((*it).first == "10209") {
-            cout<<(*it).first;
-            cout<<": ";
-            for (auto lit = (*it).second.begin(); lit != (*it).second.end(); ++lit) {
-                cout<<(*lit).source_id;
-                cout<<", ";
-                cout<<(*lit).destination_id;
-                cout<<", ";
-                cout<<(*lit).distance;
-                cout<<" -> ";
-            }
-            cout<<""<<endl;
-        }
-    }*/
 }
 
 Graph::Vertex Graph::getFirstVertex() {
@@ -122,8 +86,6 @@ vector<Graph::Vertex> Graph::getAdjacentVertex(Vertex v) {
         } else {
             neighborId = (*lit).destination_id;
         }
-        //cout<<neighborId;
-        //cout<<" -> ";
         auto vit = vertices.find(neighborId);
         if (vit != vertices.end()) {
             vs.push_back((*vit).second);

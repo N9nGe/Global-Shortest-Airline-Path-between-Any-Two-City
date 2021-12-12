@@ -147,12 +147,7 @@ void Draw::drawmap(const string & routefile, const string & airportfile, Graph::
     Functions temp;
     map<string, string> path = temp.Dijkstra(g, start, stop);
     vector<string> points;
-    //points.push_back(start.vertex_id);
     string curr = stop.vertex_id;
-    // for (size_t i = 0; i < path.size(); i++) {
-    //     curr = path[curr];
-    //     points.push_back(curr);
-    // }
     points.push_back(curr);
     map<string, string>::iterator lookup = path.find(curr);
     while (lookup->second != "") {
