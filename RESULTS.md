@@ -19,7 +19,7 @@ To test the functions of the read class, we use the member variables that belong
 ## **Graph and Graph constructor:**
 ### **Discoveries:**
 
-We implemented an adjacency list to minimize the running time of most operations in this project. Moreover, because we have too many vertices in this project, and vertices are incomparable with each other (using a vector is unnecessary and slow), we decided to implement the adjacency list using map data structure to reduce the searching time.
+We implemented an adjacency list to minimize the runtime of most operations in this project. Moreover, because we have too many vertices in this project, and vertices are incomparable with each other (using a vector is unnecessary and slow), we decided to implement the adjacency list using map data structure to reduce the searching time.
 
 Graph has two maps: map<string, Vertex> vertices and map<string, list<Edge>> adjacencyList. We use two maps instead of  map<Vertex, list<Edge>> to simplify searching (we can use a string for the key instead of constructing a vertex).
 
