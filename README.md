@@ -128,38 +128,11 @@ To run a specific test case:
 WARNING
 -------
 
-You **SHOULD NOT** copy these code into your own ECE 391 project without proper citation. Doing this is a violation of academic integrity. **You have been warned.**
+You **SHOULD NOT** copy these code into your own CS225 project without proper citation. Doing this is a violation of academic integrity. **You have been warned.**
 
 I do not own the copyright to artworks in this project. They are downloaded from websites that provide these artworks for free.
 
 This is a collaborative project by 4 students. See commit log for individual contributions.
-
-Overview
---------
-
-This is the final project for my ECE 391 course taken in UIUC. The project consists of implementing an Linux-like operating system.
-
-Features
---------
-
-- Required by course:
-  - Memory paging
-  - i8259 PIC interrupt handling
-  - Exception handling
-  - Keyboard input buffer
-  - In memory read-only filesystem
-  - Round-robin scheduling based on Programmable Interrupt Timer
-
-How to run
-----------
-
-If using latest QEMU:
-
-`qemu-system-i386 -hda "student-distrib/mp3.img" -m 512 -name test -gdb tcp:127.0.0.1:1234`
-If using QEMU provided by this course:
-
-`qemu-system-i386 -hda "student-distrib/mp3.img" -m 512 -name test -gdb tcp:127.0.0.1:1234`
-
 
 Original README by UIUC
 =======================
